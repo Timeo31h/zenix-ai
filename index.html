@@ -1,673 +1,854 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zenix AI | Gaming Studio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090914">
+  <meta name="description" content="Zenix AI : générateur de pseudos gaming et créations de miniatures et bannières personnalisées.">
+  <title>Zenix AI — Crée ton univers gaming</title>
 
-<style>
-:root {
-  --bg: #070711;
-  --purple: #a855f7;
-  --blue: #00d9ff;
-  --text: #f5f3ff;
-  --muted: #aaa8c7;
-}
+  <style>
+    :root {
+      --bg: #080811;
+      --panel: #111121;
+      --panel-light: #191932;
+      --purple: #9b5cff;
+      --blue: #36d9ff;
+      --text: #f7f4ff;
+      --muted: #aaa6c5;
+      --border: rgba(173, 116, 255, .22);
+      --radius: 20px;
+    }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  color: var(--text);
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse at 15% 10%, #5520a544, transparent 35%),
-    radial-gradient(ellipse at 90% 30%, #005b9e35, transparent 35%),
-    var(--bg);
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    #a855f711,
-    #00d9ff11,
-    transparent
-  );
-  background-size: 300% 300%;
-  animation: glow 12s ease infinite;
-}
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(111, 48, 220, .18), transparent 35%),
+        radial-gradient(ellipse at 100% 30%, rgba(0, 174, 255, .10), transparent 30%),
+        var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
 
-@keyframes glow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
+    button, input, select, textarea {
+      font: inherit;
+    }
 
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 18px;
-  padding: 18px 7%;
-  background: #070711ee;
-  border-bottom: 1px solid #a855f755;
-  backdrop-filter: blur(15px);
-}
+    button {
+      cursor: pointer;
+    }
 
-.logo {
-  font-size: 29px;
-  font-weight: 900;
-  letter-spacing: 4px;
-  background: linear-gradient(90deg, var(--purple), var(--blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 12px #a855f788);
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.logo small {
-  display: block;
-  text-align: center;
-  font-size: 10px;
-  letter-spacing: 5px;
-  margin-top: 4px;
-}
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
 
-nav {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8, 8, 17, .88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
 
-.nav-btn {
-  padding: 11px 15px;
-  border-radius: 12px;
-  color: var(--muted);
-  background: transparent;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.nav-btn.active,
-.nav-btn:hover {
-  color: white;
-  border-color: #a855f799;
-  background: #a855f71c;
-  box-shadow: 0 0 18px #a855f722;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
 
-main {
-  width: min(1100px, 90%);
-  margin: auto;
-  padding: 45px 0 65px;
-}
+    .logo-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      color: #080811;
+      box-shadow: 0 0 25px rgba(155, 92, 255, .4);
+    }
 
-.page {
-  display: none;
-}
+    .logo span:last-child {
+      background: linear-gradient(90deg, #fff, var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-.page.active {
-  display: block;
-  animation: appear .35s ease;
-}
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-@keyframes appear {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .nav-btn {
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 10px 14px;
+      transition: .2s;
+    }
 
-.hero {
-  text-align: center;
-  padding: 35px 0 55px;
-}
+    .nav-btn:hover,
+    .nav-btn.active {
+      color: white;
+      background: rgba(155, 92, 255, .13);
+      border-color: var(--border);
+    }
 
-.tag {
-  display: inline-block;
-  padding: 9px 15px;
-  margin-bottom: 22px;
-  border: 1px solid #00d9ff55;
-  border-radius: 30px;
-  color: var(--blue);
-  background: #00d9ff0d;
-  font-size: 12px;
-  letter-spacing: 2px;
-}
+    .page {
+      display: none;
+      padding: 54px 0 80px;
+      animation: appear .3s ease;
+    }
 
-h1 {
-  font-size: clamp(38px, 7vw, 72px);
-  line-height: 1.08;
-  margin-bottom: 20px;
-}
+    .page.active {
+      display: block;
+    }
 
-.gradient {
-  background: linear-gradient(90deg, #c084fc, #00d9ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-.subtitle {
-  max-width: 650px;
-  margin: auto;
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.8;
-}
+    .hero {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 75px 25px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(155, 92, 255, .2), transparent 60%),
+        linear-gradient(145deg, rgba(22, 22, 44, .95), rgba(10, 10, 22, .96));
+    }
 
-.section-title {
-  font-size: 27px;
-  margin-bottom: 12px;
-}
+    .eyebrow {
+      display: inline-block;
+      color: var(--blue);
+      background: rgba(54, 217, 255, .08);
+      border: 1px solid rgba(54, 217, 255, .24);
+      border-radius: 999px;
+      padding: 7px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
 
-.section-description {
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 24px;
-}
+    h1 {
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
-}
+    .gradient-text {
+      background: linear-gradient(90deg, var(--purple), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-.card {
-  padding: 25px;
-  border: 1px solid #ffffff14;
-  border-radius: 20px;
-  background: linear-gradient(145deg, #15152c, #0d0d1b);
-  transition: .25s;
-}
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
 
-.card:hover {
-  transform: translateY(-5px);
-  border-color: #a855f788;
-  box-shadow: 0 0 28px #a855f71b;
-}
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 13px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
 
-.card-icon {
-  font-size: 32px;
-  margin-bottom: 15px;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 19px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      color: white;
+      font-weight: 800;
+      transition: transform .2s, box-shadow .2s;
+    }
 
-.card h3 {
-  margin-bottom: 10px;
-}
+    .btn:hover {
+      transform: translateY(-2px);
+    }
 
-.card p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.7;
-}
+    .btn-primary {
+      color: #090811;
+      background: linear-gradient(100deg, var(--purple), var(--blue));
+      border: none;
+      box-shadow: 0 7px 25px rgba(130, 82, 255, .2);
+    }
 
-.price {
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--blue);
-  margin: 18px 0;
-}
+    .btn-secondary {
+      background: rgba(255, 255, 255, .04);
+    }
 
-.price small {
-  display: block;
-  font-size: 11px;
-  font-weight: normal;
-  color: var(--muted);
-  margin-top: 5px;
-}
+    .section-heading {
+      margin: 52px 0 22px;
+    }
 
-.panel {
-  margin-top: 28px;
-  padding: 28px;
-  border: 1px solid #a855f744;
-  border-radius: 22px;
-  background: #111124dd;
-}
+    .section-heading h2 {
+      font-size: clamp(25px, 4vw, 36px);
+      margin-bottom: 7px;
+    }
 
-label {
-  display: block;
-  margin: 18px 0 8px;
-  font-size: 14px;
-  color: #e3dcff;
-}
+    .section-heading p {
+      color: var(--muted);
+    }
 
-input, select, textarea {
-  width: 100%;
-  padding: 14px;
-  color: white;
-  background: #080815;
-  border: 1px solid #ffffff22;
-  border-radius: 11px;
-  font: inherit;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
 
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--purple);
-  box-shadow: 0 0 12px #a855f733;
-}
+    .card {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, var(--panel-light), var(--panel));
+      border: 1px solid var(--border);
+      transition: transform .2s, border-color .2s;
+    }
 
-select option {
-  background: #111124;
-}
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(54, 217, 255, .5);
+    }
 
-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
 
-.btn {
-  display: inline-block;
-  margin-top: 18px;
-  padding: 14px 20px;
-  color: white;
-  font-weight: bold;
-  border: 0;
-  border-radius: 11px;
-  background: linear-gradient(100deg, #9333ea, #087fd1);
-  cursor: pointer;
-  text-decoration: none;
-  transition: .25s;
-}
+    .card h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 22px #a855f755;
-}
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-.notice {
-  margin-top: 16px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-}
+    .tool-panel {
+      padding: 28px;
+      margin-top: 20px;
+      border-radius: var(--radius);
+      background: var(--panel);
+      border: 1px solid var(--border);
+    }
 
-footer {
-  padding: 28px 15px;
-  text-align: center;
-  color: #77758f;
-  border-top: 1px solid #ffffff10;
-  font-size: 13px;
-}
+    .field {
+      margin-bottom: 17px;
+    }
 
-footer strong {
-  color: #b78aff;
-}
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
 
-@media (max-width: 650px) {
-  header {
-    flex-direction: column;
-    padding: 16px 5%;
-  }
+    input, select, textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(173, 116, 255, .25);
+      outline: none;
+      color: white;
+      background: #0b0b18;
+    }
 
-  nav {
-    justify-content: center;
-  }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(54, 217, 255, .08);
+    }
 
-  .nav-btn {
-    padding: 10px;
-    font-size: 12px;
-  }
+    select option {
+      background: #111121;
+    }
 
-  .panel {
-    padding: 20px;
-  }
-}
-</style>
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .result-box {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border: 1px solid rgba(54, 217, 255, .3);
+      border-radius: 14px;
+      background: rgba(54, 217, 255, .05);
+    }
+
+    .result-box.visible {
+      display: block;
+    }
+
+    .pseudo-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .pseudo {
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #17172b;
+      cursor: pointer;
+    }
+
+    .pseudo:hover {
+      border-color: var(--blue);
+    }
+
+    .hint {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .price {
+      color: var(--blue);
+      font-size: 27px;
+      font-weight: 900;
+      margin: 12px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid rgba(54, 217, 255, .25);
+      border-radius: 999px;
+      padding: 5px 9px;
+      margin-bottom: 12px;
+    }
+
+    .order-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .price-card {
+      height: 100%;
+    }
+
+    .price-card ul {
+      list-style: none;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 18px 0;
+    }
+
+    .price-card li {
+      margin: 8px 0;
+    }
+
+    .price-card li::before {
+      content: "✓ ";
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    .notice {
+      padding: 13px;
+      border-radius: 12px;
+      color: var(--muted);
+      background: rgba(155, 92, 255, .08);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      margin-top: 18px;
+    }
+
+    footer {
+      padding: 25px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      color: white;
+      font-weight: 900;
+    }
+
+    @media (max-width: 760px) {
+      .navbar {
+        padding: 14px 0;
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .nav-btn {
+        padding: 9px 11px;
+        font-size: 13px;
+      }
+
+      .page {
+        padding-top: 28px;
+      }
+
+      .hero {
+        padding: 52px 17px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .order-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-panel {
+        padding: 19px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="#" onclick="showPage('home'); return false;">
+        <span class="logo-icon">Z</span>
+        <span>ZENIX AI</span>
+      </a>
 
-<header>
-  <div class="logo">
-    ZENIX
-    <small>ARTIFICIAL INTELLIGENCE</small>
-  </div>
-
-  <nav>
-    <button class="nav-btn active" data-page="home">
-      🎮 Générateur
-    </button>
-    <button class="nav-btn" data-page="orders">
-      🎨 Miniatures &amp; bannières
-    </button>
-  </nav>
-</header>
-
-<main>
-
-<section id="home" class="page active">
-
-  <div class="hero">
-    <div class="tag">✦ GAMING CREATIVE STUDIO ✦</div>
-
-    <h1>
-      Imagine. Crée.<br>
-      <span class="gradient">Impose ton style.</span>
-    </h1>
-
-    <p class="subtitle">
-      Bienvenue chez Zenix AI ! Trouve des idées originales
-      pour ton univers gaming et prépare tes prochaines créations.
-    </p>
-
-    <button class="btn" onclick="showPage('orders')">
-      Découvrir les créations →
-    </button>
-  </div>
-
-  <h2 class="section-title">Ton espace créatif</h2>
-  <p class="section-description">
-    Tout ce qu'il faut pour donner du style à ton univers gaming.
-  </p>
-
-  <div class="grid">
-    <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>Idées gaming</h3>
-      <p>Génère des idées de pseudos pour te démarquer.</p>
+      <nav aria-label="Navigation principale">
+        <button class="nav-btn active" data-page="home" onclick="showPage('home')">
+          🎮 Générateur
+        </button>
+        <button class="nav-btn" data-page="orders" onclick="showPage('orders')">
+          🎨 Miniatures &amp; bannières
+        </button>
+      </nav>
     </div>
+  </header>
 
-    <div class="card">
-      <div class="card-icon">🎨</div>
-      <h3>Design personnalisé</h3>
-      <p>Prépare ta demande de miniature ou de bannière.</p>
+  <main class="container">
+    <!-- PAGE 1 : ACCUEIL ET GÉNÉRATEUR -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <span class="eyebrow">Ton univers gaming commence ici</span>
+        <h1>Crée ton style.<br><span class="gradient-text">Marque les esprits.</span></h1>
+        <p>
+          Bienvenue sur Zenix AI ! Trouve ton prochain pseudo gaming
+          et découvre des créations personnalisées pour tes réseaux.
+        </p>
+
+        <div class="actions">
+          <button class="btn btn-primary" onclick="scrollToGenerator()">
+            ✨ Générer un pseudo
+          </button>
+          <button class="btn btn-secondary" onclick="showPage('orders')">
+            🎨 Découvrir les créations
+          </button>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <h2>Pourquoi choisir <span class="gradient-text">Zenix AI</span> ?</h2>
+        <p>Des idées et des créations pour donner du style à ton univers.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Rapide et simple</h3>
+          <p>Génère des idées de pseudos en quelques secondes.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🎨</div>
+          <h3>Style gaming</h3>
+          <p>Des idées de miniatures et de bannières adaptées à ton univers.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">💜</div>
+          <h3>Personnalisé</h3>
+          <p>Explique ton idée pour préparer une demande qui te ressemble.</p>
+        </article>
+      </div>
+
+      <div class="section-heading" id="generator">
+        <h2>🎮 Générateur de pseudos</h2>
+        <p>Choisis un jeu, un mot et un style pour créer tes idées.</p>
+      </div>
+
+      <div class="tool-panel">
+        <div class="field">
+          <label for="pseudoWord">Ton mot préféré (facultatif)</label>
+          <input id="pseudoWord" type="text" maxlength="16" placeholder="Exemple : Timeo">
+        </div>
+
+        <div class="field">
+          <label for="pseudoGame">Ton jeu</label>
+          <select id="pseudoGame">
+            <option value="FN">Fortnite</option>
+            <option value="RL">Rocket League</option>
+            <option value="RBX">Roblox</option>
+            <option value="GMR">Gaming</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="pseudoStyle">Ton style</label>
+          <select id="pseudoStyle">
+            <option value="pro">Pro / compétitif</option>
+            <option value="dark">Dark</option>
+            <option value="clean">Clean</option>
+            <option value="fun">Fun</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" type="button" onclick="generatePseudos()">
+          ✨ Générer mes pseudos
+        </button>
+
+        <div id="pseudoResults" class="result-box" aria-live="polite">
+          <strong>Voici tes idées :</strong>
+          <div id="pseudoList" class="pseudo-list"></div>
+          <p class="hint">Clique sur un pseudo pour le copier. Sa disponibilité n'est pas vérifiée.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 : MINIATURES, BANNIÈRES ET COMMANDES -->
+    <section id="orders" class="page">
+      <div class="hero">
+        <span class="eyebrow">Zenix Studio</span>
+        <h1>Donne vie à tes <span class="gradient-text">idées.</span></h1>
+        <p>
+          Tu veux une miniature YouTube, une bannière ou un pack gaming ?
+          Décris ton projet dans le formulaire ci-dessous.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#orderForm" onclick="setTimeout(() => document.getElementById('orderForm').scrollIntoView({behavior:'smooth'}), 50)">
+            📩 Préparer ma commande
+          </a>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <h2>Nos créations</h2>
+        <p>Les prix ci-dessous sont indicatifs : confirme-les avec un parent avant de proposer des commandes payantes.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon">🖼️</div>
+          <span class="tag">YouTube / Gaming</span>
+          <h3>Miniature</h3>
+          <p>Une idée de miniature pour mettre ta vidéo en valeur.</p>
+          <div class="price">5 €</div>
+          <button class="btn btn-secondary" type="button" onclick="chooseCreation('Miniature')">
+            Choisir
+          </button>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🌌</div>
+          <span class="tag">Chaîne / Profil</span>
+          <h3>Bannière</h3>
+          <p>Une bannière personnalisée pour ton univers gaming.</p>
+          <div class="price">8 €</div>
+          <button class="btn btn-secondary" type="button" onclick="chooseCreation('Bannière')">
+            Choisir
+          </button>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🚀</div>
+          <span class="tag">Pack créateur</span>
+          <h3>Miniature + bannière</h3>
+          <p>Un ensemble coordonné pour garder le même style.</p>
+          <div class="price">12 €</div>
+          <button class="btn btn-secondary" type="button" onclick="chooseCreation('Pack miniature + bannière')">
+            Choisir
+          </button>
+        </article>
+      </div>
+
+      <div class="section-heading">
+        <h2>📩 Formulaire de commande</h2>
+        <p>Décris ton projet : les informations seront ajoutées à un e-mail.</p>
+      </div>
+
+      <div class="order-layout">
+        <aside class="card price-card">
+          <div class="card-icon">💡</div>
+          <h3>Comment ça marche ?</h3>
+          <ul>
+            <li>Choisis le type de création.</li>
+            <li>Indique ton jeu et ton style.</li>
+            <li>Explique ce que tu souhaites.</li>
+            <li>Clique sur Préparer l'e-mail.</li>
+          </ul>
+          <div class="notice">
+            Le site ne reçoit pas directement les commandes. Un e-mail est préparé
+            dans l'application de messagerie du visiteur, qui doit ensuite l'envoyer.
+          </div>
+        </aside>
+
+        <form id="orderForm" class="tool-panel">
+          <div class="field">
+            <label for="customerName">Ton pseudo ou prénom *</label>
+            <input id="customerName" name="customerName" type="text" maxlength="60" required placeholder="Exemple : Player123">
+          </div>
+
+          <div class="field">
+            <label for="customerEmail">Ton adresse e-mail (facultatif)</label>
+            <input id="customerEmail" name="customerEmail" type="email" maxlength="120" placeholder="Pour pouvoir te répondre">
+          </div>
+
+          <div class="field">
+            <label for="creation">Que souhaites-tu ? *</label>
+            <select id="creation" name="creation" required>
+              <option value="Miniature">Miniature — 5 € indicatifs</option>
+              <option value="Bannière">Bannière — 8 € indicatifs</option>
+              <option value="Pack miniature + bannière">Pack miniature + bannière — 12 € indicatifs</option>
+              <option value="Autre demande">Autre demande</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="game">Pour quel jeu ? *</label>
+            <select id="game" name="game" required>
+              <option value="Fortnite">Fortnite</option>
+              <option value="Roblox">Roblox</option>
+              <option value="Rocket League">Rocket League</option>
+              <option value="Minecraft">Minecraft</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="style">Style souhaité *</label>
+            <select id="style" name="style" required>
+              <option value="Néon violet et bleu">Néon violet et bleu</option>
+              <option value="Compétitif / esport">Compétitif / esport</option>
+              <option value="Dark">Dark</option>
+              <option value="Coloré">Coloré</option>
+              <option value="À discuter">À discuter</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="description">Décris ton idée *</label>
+            <textarea id="description" name="description" maxlength="2000" required placeholder="Exemple : je veux une miniature Fortnite avec mon pseudo, un fond violet et bleu et un effet lumineux..."></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">
+            ✉️ Préparer l'e-mail
+          </button>
+
+          <p class="hint">
+            N'indique pas de mot de passe ni d'information personnelle sensible.
+            L'envoi de l'e-mail n'est pas automatique.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><span class="footer-logo">ZENIX AI</span> — Ton univers gaming, ton style.</p>
+      <p>© <span id="year"></span> Zenix AI. Tous droits réservés.</p>
     </div>
+  </footer>
 
-    <div class="card">
-      <div class="card-icon">💜</div>
-      <h3>Style Zenix</h3>
-      <p>Un univers sombre, futuriste et rempli de néons.</p>
-    </div>
-  </div>
+  <script>
+    // Adresse de réception des commandes
+    const MON_EMAIL = "t.oudin@edu-groupesaintmichel.fr";
 
-  <div class="panel">
-    <h2 class="section-title">Générateur de pseudos</h2>
-    <p class="section-description">
-      Choisis un style et découvre des idées de pseudos gaming.
-    </p>
+    // Navigation entre les deux pages
+    function showPage(pageId) {
+      document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.toggle("active", page.id === pageId);
+      });
 
-    <label for="theme">Style du pseudo</label>
-    <select id="theme">
-      <option value="pro">Pro / compétitif</option>
-      <option value="neon">Néon / futuriste</option>
-      <option value="dark">Sombre / mystérieux</option>
-      <option value="short">Court et simple</option>
-    </select>
+      document.querySelectorAll(".nav-btn").forEach(function(button) {
+        button.classList.toggle("active", button.dataset.page === pageId);
+      });
 
-    <label for="baseName">Ton mot personnalisé (facultatif)</label>
-    <input id="baseName" maxlength="15" placeholder="Exemple : Timeo">
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-    <button class="btn" onclick="generateNames()">
-      ✨ Générer des pseudos
-    </button>
+    function scrollToGenerator() {
+      showPage("home");
+      setTimeout(function() {
+        document.getElementById("generator").scrollIntoView({
+          behavior: "smooth"
+        });
+      }, 100);
+    }
 
-    <div id="nameResult" class="notice" hidden></div>
-  </div>
+    // Générateur de pseudos
+    function generatePseudos() {
+      const wordInput = document.getElementById("pseudoWord").value.trim();
+      const game = document.getElementById("pseudoGame").value;
+      const style = document.getElementById("pseudoStyle").value;
 
-</section>
+      const base = wordInput
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .slice(0, 16) || "Player";
 
-<section id="orders" class="page">
+      const prefixes = {
+        pro: ["Vx", "Nx", "Clx", "Zy", "Rz", "HvK"],
+        dark: ["Dark", "Void", "Ghost", "Shadow", "Night", "Zero"],
+        clean: ["Zen", "Aero", "Nova", "Echo", "Lynx", "Zenix"],
+        fun: ["Mini", "Crazy", "Pixel", "Bouncy", "Wiz", "Turbo"]
+      };
 
-  <div class="hero">
-    <div class="tag">✦ ZENIX CREATIONS ✦</div>
+      const suffixes = {
+        pro: ["FN", "ツ", "X", "7", "OnTop", "FPS"],
+        dark: ["Void", "404", "X", "Shadow", "Night", "666"],
+        clean: ["io", "ix", "o", "zy", "X", "One"],
+        fun: ["LOL", "GG", "Pop", "XD", "Boom", "Play"]
+      };
 
-    <h1>
-      Ton univers.<br>
-      <span class="gradient">Ton identité.</span>
-    </h1>
+      const list = document.getElementById("pseudoList");
+      list.innerHTML = "";
 
-    <p class="subtitle">
-      Choisis ta création, décris ton idée et prépare ta commande.
-    </p>
-  </div>
+      const names = [
+        base + suffixes[style][0],
+        prefixes[style][0] + base,
+        base + "_" + suffixes[style][1],
+        prefixes[style][1] + game + base,
+        base + suffixes[style][2],
+        prefixes[style][2] + base + suffixes[style][3]
+      ];
 
-  <h2 class="section-title">Nos créations</h2>
-  <p class="section-description">
-    Choisis le type de projet que tu souhaites.
-  </p>
+      names.forEach(function(name) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "pseudo";
+        button.textContent = name;
+        button.title = "Cliquer pour copier";
 
-  <div class="grid">
+        button.addEventListener("click", async function() {
+          try {
+            await navigator.clipboard.writeText(name);
+            button.textContent = "✓ Copié !";
+            setTimeout(function() {
+              button.textContent = name;
+            }, 1200);
+          } catch (error) {
+            window.prompt("Copie ton pseudo :", name);
+          }
+        });
 
-    <div class="card">
-      <div class="card-icon">🖼️</div>
-      <h3>Miniature gaming</h3>
-      <p>Une miniature pour tes vidéos YouTube et tes jeux préférés.</p>
-      <div class="price">5 €<small>Tarif indicatif</small></div>
-      <button class="btn" onclick="chooseCreation('Miniature gaming')">
-        Commander
-      </button>
-    </div>
+        list.appendChild(button);
+      });
 
-    <div class="card">
-      <div class="card-icon">🌌</div>
-      <h3>Bannière gaming</h3>
-      <p>Une bannière personnalisée pour ta chaîne.</p>
-      <div class="price">8 €<small>Tarif indicatif</small></div>
-      <button class="btn" onclick="chooseCreation('Bannière gaming')">
-        Commander
-      </button>
-    </div>
+      document.getElementById("pseudoResults").classList.add("visible");
+    }
 
-    <div class="card">
-      <div class="card-icon">💎</div>
-      <h3>Pack créateur</h3>
-      <p>Une miniature et une bannière dans un style assorti.</p>
-      <div class="price">12 €<small>Tarif indicatif</small></div>
-      <button class="btn" onclick="chooseCreation('Pack créateur')">
-        Commander
-      </button>
-    </div>
+    // Sélectionner un produit et ouvrir le formulaire
+    function chooseCreation(value) {
+      document.getElementById("creation").value = value;
+      document.getElementById("orderForm").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
 
-  </div>
+    // Préparer un e-mail avec les détails de la commande
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-  <div class="panel">
-    <h2 class="section-title">Passer une commande</h2>
-    <p class="section-description">
-      Remplis le formulaire : ton application Mail s'ouvrira
-      avec toutes les informations déjà préparées.
-    </p>
+      const name = document.getElementById("customerName").value.trim();
+      const email = document.getElementById("customerEmail").value.trim();
+      const creation = document.getElementById("creation").value;
+      const game = document.getElementById("game").value;
+      const style = document.getElementById("style").value;
+      const description = document.getElementById("description").value.trim();
 
-    <form id="orderForm">
+      if (!MON_EMAIL || !MON_EMAIL.includes("@")) {
+        alert("L'adresse e-mail de réception n'est pas configurée.");
+        return;
+      }
 
-      <label for="customerName">Ton pseudo ou prénom</label>
-      <input
-        id="customerName"
-        type="text"
-        maxlength="60"
-        placeholder="Ton pseudo"
-        required>
+      const subject = encodeURIComponent("Nouvelle commande Zenix AI - " + creation);
 
-      <label for="customerEmail">Ton adresse mail (facultatif)</label>
-      <input
-        id="customerEmail"
-        type="email"
-        placeholder="toi@exemple.com">
+      const body = encodeURIComponent(
+        "Bonjour, voici une demande envoyée depuis Zenix AI.\n\n" +
+        "Pseudo / prénom : " + name + "\n" +
+        "E-mail du client : " + (email || "Non renseigné") + "\n" +
+        "Création : " + creation + "\n" +
+        "Jeu : " + game + "\n" +
+        "Style : " + style + "\n\n" +
+        "Description du projet :\n" + description + "\n\n" +
+        "Demande envoyée depuis le site Zenix AI."
+      );
 
-      <label for="creation">Type de création</label>
-      <select id="creation" required>
-        <option value="">Choisir une création</option>
-        <option value="Miniature gaming">Miniature gaming — 5 €</option>
-        <option value="Bannière gaming">Bannière gaming — 8 €</option>
-        <option value="Pack créateur">Pack créateur — 12 €</option>
-      </select>
+      const mailto = "mailto:" + MON_EMAIL +
+        "?subject=" + subject +
+        "&body=" + body;
 
-      <label for="game">Jeu concerné</label>
-      <select id="game" required>
-        <option value="">Choisir un jeu</option>
-        <option>Fortnite</option>
-        <option>Roblox</option>
-        <option>Rocket League</option>
-        <option>Minecraft</option>
-        <option>Autre</option>
-      </select>
+      window.location.href = mailto;
+    });
 
-      <label for="style">Style souhaité</label>
-      <select id="style" required>
-        <option value="">Choisir un style</option>
-        <option>Néon violet et bleu</option>
-        <option>Compétitif / esport</option>
-        <option>Coloré et dynamique</option>
-        <option>Sombre et mystérieux</option>
-        <option>Autre style</option>
-      </select>
-
-      <label for="description">Description de la commande</label>
-      <textarea
-        id="description"
-        maxlength="1500"
-        placeholder="Explique ce que tu veux : texte, couleurs, pseudo, éléments..."
-        required></textarea>
-
-      <button class="btn" type="submit">
-        🚀 Envoyer ma commande
-      </button>
-
-      <p class="notice">
-        Ton application Mail s'ouvrira pour que tu puisses vérifier
-        et envoyer la commande.
-      </p>
-    </form>
-  </div>
-
-</section>
-
-</main>
-
-<footer>
-  <p><strong>ZENIX AI</strong> — Imagine ton prochain niveau.</p>
-  <p style="margin-top:8px;">© 2026 Zenix AI</p>
-</footer>
-
-<script>
-// ✉️ REMPLACE CETTE ADRESSE PAR TON ADRESSE MAIL
-const MON_EMAIL = "TON-EMAIL@exemple.com";
-
-const navButtons = document.querySelectorAll(".nav-btn");
-const pages = document.querySelectorAll(".page");
-
-function showPage(pageId) {
-  pages.forEach(page => {
-    page.classList.toggle("active", page.id === pageId);
-  });
-
-  navButtons.forEach(button => {
-    button.classList.toggle("active", button.dataset.page === pageId);
-  });
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-navButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    showPage(button.dataset.page);
-  });
-});
-
-function chooseCreation(value) {
-  showPage("orders");
-  document.getElementById("creation").value = value;
-  document.getElementById("creation").focus();
-}
-
-function generateNames() {
-  const theme = document.getElementById("theme").value;
-  const base = document.getElementById("baseName").value
-    .trim()
-    .replace(/[^a-zA-Z0-9_-]/g, "")
-    .slice(0, 15);
-
-  const lists = {
-    pro: ["Vex", "Clutch", "Peak", "Rival", "Strix", "Fury"],
-    neon: ["Nex", "Cyber", "Nova", "Volt", "Pixel", "Zyro"],
-    dark: ["Shadow", "Ghost", "Phantom", "Night", "Raven", "Void"],
-    short: ["Zyn", "Kyo", "Nox", "Ryn", "Vyn", "Zex"]
-  };
-
-  const endings = ["X", "Z", "FN", "YT", "7"];
-  const names = [];
-
-  while (names.length < 6) {
-    const word = lists[theme][
-      Math.floor(Math.random() * lists[theme].length)
-    ];
-
-    const ending = endings[
-      Math.floor(Math.random() * endings.length)
-    ];
-
-    const name = base ? base + word + ending : word + ending;
-
-    if (!names.includes(name)) names.push(name);
-  }
-
-  const result = document.getElementById("nameResult");
-  result.replaceChildren();
-
-  const title = document.createElement("strong");
-  title.textContent = "Voici tes idées :";
-  result.appendChild(title);
-
-  names.forEach(name => {
-    const line = document.createElement("p");
-    line.textContent = "✦ " + name;
-    result.appendChild(line);
-  });
-
-  result.hidden = false;
-}
-
-document.getElementById("orderForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  if (
-    !MON_EMAIL ||
-    MON_EMAIL === "t.oudin@edu-groupesaintmichel.fr" ||
-    !MON_EMAIL.includes("@")
-  ) {
-    
-    return;
-  }
-
-  const name = document.getElementById("customerName").value.trim();
-  const email = document.getElementById("customerEmail").value.trim();
-  const creation = document.getElementById("creation").value;
-  const game = document.getElementById("game").value;
-  const style = document.getElementById("style").value;
-  const description = document.getElementById("description").value.trim();
-
-  const subject = encodeURIComponent("Nouvelle commande Zenix AI - " + creation);
-
-  const body = encodeURIComponent(
-    "Bonjour, voici une commande Zenix AI.\n\n" +
-    "Pseudo / prénom : " + name + "\n" +
-    "Email du client : " + (email || "Non renseigné") + "\n" +
-    "Création : " + creation + "\n" +
-    "Jeu : " + game + "\n" +
-    "Style : " + style + "\n\n" +
-    "Description :\n" + description + "\n\n" +
-    "Envoyé depuis le site Zenix AI."
-  );
-
-  const mailto = "mailto:" + MON_EMAIL +
-    "?subject=" + subject +
-    "&body=" + body;
-
-  window.location.href = mailto;
-});
-</script>
-
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
