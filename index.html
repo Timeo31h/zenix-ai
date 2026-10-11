@@ -302,7 +302,7 @@ document.getElementById('orderForm').addEventListener('submit',e=>{
   'Merci de confirmer le prix final et le délai.'
  ].join('\n');
  document.getElementById('orderMessage').textContent='Ta demande est préparée. Pour l’envoyer, une adresse e-mail doit être configurée par ton parent dans le code.';
- const email='REMPLACER-PAR-EMAIL-DU-PARENT@example.com';
+ const email='t.oudin@edu-groupesaintmichel.fr';
  if(email.includes('REMPLACER-PAR-EMAIL')) return;
  window.location.href='mailto:'+email+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
 });
