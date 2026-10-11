@@ -4,12 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zenix AI — Gaming Studio</title>
+<title>Zenix AI | Gaming Studio</title>
 
 <style>
 :root {
   --bg: #070711;
-  --panel: #111124;
   --purple: #a855f7;
   --blue: #00d9ff;
   --text: #f5f3ff;
@@ -23,28 +22,27 @@
 }
 
 body {
-  min-height: 100vh;
   font-family: Arial, sans-serif;
   color: var(--text);
+  min-height: 100vh;
   background:
-    radial-gradient(ellipse at 15% 10%, #5520a533, transparent 35%),
-    radial-gradient(ellipse at 90% 30%, #005b9e30, transparent 35%),
+    radial-gradient(ellipse at 15% 10%, #5520a544, transparent 35%),
+    radial-gradient(ellipse at 90% 30%, #005b9e35, transparent 35%),
     var(--bg);
-  overflow-x: hidden;
 }
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  pointer-events: none;
   z-index: -1;
+  pointer-events: none;
   background: linear-gradient(
     120deg,
-    transparent 30%,
-    #a855f70a,
-    #00d9ff0a,
-    transparent 70%
+    transparent,
+    #a855f711,
+    #00d9ff11,
+    transparent
   );
   background-size: 300% 300%;
   animation: glow 12s ease infinite;
@@ -62,17 +60,18 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 18px;
   padding: 18px 7%;
-  background: #070711dd;
-  border-bottom: 1px solid #a855f744;
+  background: #070711ee;
+  border-bottom: 1px solid #a855f755;
   backdrop-filter: blur(15px);
 }
 
 .logo {
-  font-size: 28px;
+  font-size: 29px;
   font-weight: 900;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   background: linear-gradient(90deg, var(--purple), var(--blue));
   -webkit-background-clip: text;
   background-clip: text;
@@ -80,12 +79,12 @@ header {
   filter: drop-shadow(0 0 12px #a855f788);
 }
 
-.logo span {
-  font-size: 11px;
+.logo small {
   display: block;
-  letter-spacing: 6px;
   text-align: center;
-  margin-top: 3px;
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-top: 4px;
 }
 
 nav {
@@ -95,18 +94,16 @@ nav {
 }
 
 .nav-btn {
+  padding: 11px 15px;
+  border-radius: 12px;
   color: var(--muted);
   background: transparent;
   border: 1px solid transparent;
-  padding: 11px 15px;
-  border-radius: 12px;
   cursor: pointer;
-  font-size: 14px;
-  transition: .25s;
 }
 
-.nav-btn:hover,
-.nav-btn.active {
+.nav-btn.active,
+.nav-btn:hover {
   color: white;
   border-color: #a855f799;
   background: #a855f71c;
@@ -116,16 +113,16 @@ nav {
 main {
   width: min(1100px, 90%);
   margin: auto;
-  padding: 65px 0;
+  padding: 45px 0 65px;
 }
 
 .page {
   display: none;
-  animation: appear .35s ease;
 }
 
 .page.active {
   display: block;
+  animation: appear .35s ease;
 }
 
 @keyframes appear {
@@ -135,24 +132,24 @@ main {
 
 .hero {
   text-align: center;
-  padding: 40px 0 55px;
+  padding: 35px 0 55px;
 }
 
 .tag {
   display: inline-block;
-  color: var(--blue);
-  border: 1px solid #00d9ff55;
-  background: #00d9ff0d;
-  border-radius: 30px;
   padding: 9px 15px;
+  margin-bottom: 22px;
+  border: 1px solid #00d9ff55;
+  border-radius: 30px;
+  color: var(--blue);
+  background: #00d9ff0d;
   font-size: 12px;
   letter-spacing: 2px;
-  margin-bottom: 24px;
 }
 
 h1 {
   font-size: clamp(38px, 7vw, 72px);
-  line-height: 1.05;
+  line-height: 1.08;
   margin-bottom: 20px;
 }
 
@@ -161,26 +158,25 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 20px #a855f733);
 }
 
 .subtitle {
   max-width: 650px;
   margin: auto;
   color: var(--muted);
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 .section-title {
-  font-size: 28px;
+  font-size: 27px;
   margin-bottom: 12px;
 }
 
 .section-description {
   color: var(--muted);
-  margin-bottom: 25px;
-  line-height: 1.6;
+  line-height: 1.7;
+  margin-bottom: 24px;
 }
 
 .grid {
@@ -190,11 +186,11 @@ h1 {
 }
 
 .card {
-  background: linear-gradient(145deg, #15152c, #0d0d1b);
-  border: 1px solid #ffffff12;
-  border-radius: 20px;
   padding: 25px;
-  transition: .3s;
+  border: 1px solid #ffffff14;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #15152c, #0d0d1b);
+  transition: .25s;
 }
 
 .card:hover {
@@ -204,53 +200,62 @@ h1 {
 }
 
 .card-icon {
-  font-size: 30px;
+  font-size: 32px;
   margin-bottom: 15px;
 }
 
 .card h3 {
-  font-size: 19px;
   margin-bottom: 10px;
 }
 
 .card p {
   color: var(--muted);
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--blue);
+  margin: 18px 0;
+}
+
+.price small {
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+  color: var(--muted);
+  margin-top: 5px;
 }
 
 .panel {
-  background: #111124dd;
+  margin-top: 28px;
+  padding: 28px;
   border: 1px solid #a855f744;
   border-radius: 22px;
-  padding: 28px;
-  margin-top: 25px;
-  box-shadow: 0 0 35px #7024b20d;
+  background: #111124dd;
 }
 
 label {
   display: block;
-  font-size: 14px;
   margin: 18px 0 8px;
+  font-size: 14px;
   color: #e3dcff;
 }
 
-input,
-select,
-textarea {
+input, select, textarea {
   width: 100%;
   padding: 14px;
   color: white;
   background: #080815;
-  border: 1px solid #ffffff20;
+  border: 1px solid #ffffff22;
   border-radius: 11px;
-  outline: none;
   font: inherit;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+input:focus, select:focus, textarea:focus {
+  outline: none;
   border-color: var(--purple);
   box-shadow: 0 0 12px #a855f733;
 }
@@ -260,21 +265,21 @@ select option {
 }
 
 textarea {
-  min-height: 110px;
+  min-height: 120px;
   resize: vertical;
 }
 
 .btn {
   display: inline-block;
   margin-top: 18px;
-  padding: 13px 20px;
-  border: 0;
-  border-radius: 11px;
+  padding: 14px 20px;
   color: white;
   font-weight: bold;
-  font-size: 14px;
+  border: 0;
+  border-radius: 11px;
   background: linear-gradient(100deg, #9333ea, #087fd1);
   cursor: pointer;
+  text-decoration: none;
   transition: .25s;
 }
 
@@ -283,49 +288,16 @@ textarea {
   box-shadow: 0 0 22px #a855f755;
 }
 
-.result {
-  margin-top: 18px;
-  padding: 16px;
-  border-radius: 12px;
-  background: #00d9ff0c;
-  border: 1px solid #00d9ff33;
-  color: #dffaff;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
-}
-
-.price {
-  font-size: 30px;
-  font-weight: 900;
-  margin: 17px 0;
-  color: var(--blue);
-}
-
-.price small {
-  font-size: 13px;
+.notice {
+  margin-top: 16px;
   color: var(--muted);
-  font-weight: normal;
-}
-
-ul {
-  list-style: none;
-  margin-top: 18px;
-}
-
-li {
-  color: var(--muted);
-  margin: 12px 0;
-  font-size: 14px;
-}
-
-li::before {
-  content: "✦ ";
-  color: var(--blue);
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 footer {
+  padding: 28px 15px;
   text-align: center;
-  padding: 30px 15px;
   color: #77758f;
   border-top: 1px solid #ffffff10;
   font-size: 13px;
@@ -350,16 +322,8 @@ footer strong {
     font-size: 12px;
   }
 
-  main {
-    padding: 35px 0;
-  }
-
   .panel {
     padding: 20px;
-  }
-
-  .hero {
-    padding-top: 25px;
   }
 }
 </style>
@@ -370,7 +334,7 @@ footer strong {
 <header>
   <div class="logo">
     ZENIX
-    <span>ARTIFICIAL INTELLIGENCE</span>
+    <small>ARTIFICIAL INTELLIGENCE</small>
   </div>
 
   <nav>
@@ -385,177 +349,201 @@ footer strong {
 
 <main>
 
-  <!-- ACCUEIL ET GÉNÉRATEUR -->
-  <section id="home" class="page active">
+<section id="home" class="page active">
 
-    <div class="hero">
-      <div class="tag">✦ GAMING CREATIVE STUDIO ✦</div>
-      <h1>Imagine. Crée.<br><span class="gradient">Impose ton style.</span></h1>
-      <p class="subtitle">
-        Bienvenue chez Zenix AI, ton espace gaming pour trouver des idées,
-        créer des concepts et donner du style à ton univers.
-      </p>
-      <button class="btn" onclick="showPage('orders')">
-        Découvrir les créations →
+  <div class="hero">
+    <div class="tag">✦ GAMING CREATIVE STUDIO ✦</div>
+
+    <h1>
+      Imagine. Crée.<br>
+      <span class="gradient">Impose ton style.</span>
+    </h1>
+
+    <p class="subtitle">
+      Bienvenue chez Zenix AI ! Trouve des idées originales
+      pour ton univers gaming et prépare tes prochaines créations.
+    </p>
+
+    <button class="btn" onclick="showPage('orders')">
+      Découvrir les créations →
+    </button>
+  </div>
+
+  <h2 class="section-title">Ton espace créatif</h2>
+  <p class="section-description">
+    Tout ce qu'il faut pour donner du style à ton univers gaming.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Idées gaming</h3>
+      <p>Génère des idées de pseudos pour te démarquer.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <h3>Design personnalisé</h3>
+      <p>Prépare ta demande de miniature ou de bannière.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💜</div>
+      <h3>Style Zenix</h3>
+      <p>Un univers sombre, futuriste et rempli de néons.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2 class="section-title">Générateur de pseudos</h2>
+    <p class="section-description">
+      Choisis un style et découvre des idées de pseudos gaming.
+    </p>
+
+    <label for="theme">Style du pseudo</label>
+    <select id="theme">
+      <option value="pro">Pro / compétitif</option>
+      <option value="neon">Néon / futuriste</option>
+      <option value="dark">Sombre / mystérieux</option>
+      <option value="short">Court et simple</option>
+    </select>
+
+    <label for="baseName">Ton mot personnalisé (facultatif)</label>
+    <input id="baseName" maxlength="15" placeholder="Exemple : Timeo">
+
+    <button class="btn" onclick="generateNames()">
+      ✨ Générer des pseudos
+    </button>
+
+    <div id="nameResult" class="notice" hidden></div>
+  </div>
+
+</section>
+
+<section id="orders" class="page">
+
+  <div class="hero">
+    <div class="tag">✦ ZENIX CREATIONS ✦</div>
+
+    <h1>
+      Ton univers.<br>
+      <span class="gradient">Ton identité.</span>
+    </h1>
+
+    <p class="subtitle">
+      Choisis ta création, décris ton idée et prépare ta commande.
+    </p>
+  </div>
+
+  <h2 class="section-title">Nos créations</h2>
+  <p class="section-description">
+    Choisis le type de projet que tu souhaites.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-icon">🖼️</div>
+      <h3>Miniature gaming</h3>
+      <p>Une miniature pour tes vidéos YouTube et tes jeux préférés.</p>
+      <div class="price">5 €<small>Tarif indicatif</small></div>
+      <button class="btn" onclick="chooseCreation('Miniature gaming')">
+        Commander
       </button>
     </div>
 
-    <h2 class="section-title">Ton espace créatif</h2>
-    <p class="section-description">
-      Trouve des idées originales pour ton pseudo, ta chaîne ou ton univers gaming.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>Idées gaming</h3>
-        <p>Découvre des idées pour personnaliser ton univers et te démarquer.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🎨</div>
-        <h3>Design personnalisé</h3>
-        <p>Prépare ton projet de miniature ou de bannière avec ton propre style.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">💜</div>
-        <h3>Style Zenix</h3>
-        <p>Une identité sombre, futuriste et lumineuse pour les passionnés de gaming.</p>
-      </div>
+    <div class="card">
+      <div class="card-icon">🌌</div>
+      <h3>Bannière gaming</h3>
+      <p>Une bannière personnalisée pour ta chaîne.</p>
+      <div class="price">8 €<small>Tarif indicatif</small></div>
+      <button class="btn" onclick="chooseCreation('Bannière gaming')">
+        Commander
+      </button>
     </div>
 
-    <div class="panel">
-      <h2 class="section-title">Générateur de pseudos</h2>
-      <p class="section-description">
-        Choisis un thème et génère des idées de pseudos gaming.
-      </p>
+    <div class="card">
+      <div class="card-icon">💎</div>
+      <h3>Pack créateur</h3>
+      <p>Une miniature et une bannière dans un style assorti.</p>
+      <div class="price">12 €<small>Tarif indicatif</small></div>
+      <button class="btn" onclick="chooseCreation('Pack créateur')">
+        Commander
+      </button>
+    </div>
 
-      <label for="theme">Ton thème</label>
-      <select id="theme">
-        <option value="pro">Pro / compétitif</option>
-        <option value="neon">Néon / futuriste</option>
-        <option value="dark">Sombre / mystérieux</option>
-        <option value="short">Court et simple</option>
+  </div>
+
+  <div class="panel">
+    <h2 class="section-title">Passer une commande</h2>
+    <p class="section-description">
+      Remplis le formulaire : ton application Mail s'ouvrira
+      avec toutes les informations déjà préparées.
+    </p>
+
+    <form id="orderForm">
+
+      <label for="customerName">Ton pseudo ou prénom</label>
+      <input
+        id="customerName"
+        type="text"
+        maxlength="60"
+        placeholder="Ton pseudo"
+        required>
+
+      <label for="customerEmail">Ton adresse mail (facultatif)</label>
+      <input
+        id="customerEmail"
+        type="email"
+        placeholder="toi@exemple.com">
+
+      <label for="creation">Type de création</label>
+      <select id="creation" required>
+        <option value="">Choisir une création</option>
+        <option value="Miniature gaming">Miniature gaming — 5 €</option>
+        <option value="Bannière gaming">Bannière gaming — 8 €</option>
+        <option value="Pack créateur">Pack créateur — 12 €</option>
       </select>
 
-      <label for="baseName">Un mot à ajouter (facultatif)</label>
-      <input id="baseName" maxlength="15" placeholder="Exemple : Timeo">
+      <label for="game">Jeu concerné</label>
+      <select id="game" required>
+        <option value="">Choisir un jeu</option>
+        <option>Fortnite</option>
+        <option>Roblox</option>
+        <option>Rocket League</option>
+        <option>Minecraft</option>
+        <option>Autre</option>
+      </select>
 
-      <button class="btn" onclick="generateNames()">
-        ✨ Générer des pseudos
+      <label for="style">Style souhaité</label>
+      <select id="style" required>
+        <option value="">Choisir un style</option>
+        <option>Néon violet et bleu</option>
+        <option>Compétitif / esport</option>
+        <option>Coloré et dynamique</option>
+        <option>Sombre et mystérieux</option>
+        <option>Autre style</option>
+      </select>
+
+      <label for="description">Description de la commande</label>
+      <textarea
+        id="description"
+        maxlength="1500"
+        placeholder="Explique ce que tu veux : texte, couleurs, pseudo, éléments..."
+        required></textarea>
+
+      <button class="btn" type="submit">
+        🚀 Envoyer ma commande
       </button>
 
-      <div id="nameResult" class="result" hidden></div>
-    </div>
-
-  </section>
-
-  <!-- MINIATURES ET BANNIÈRES -->
-  <section id="orders" class="page">
-
-    <div class="hero">
-      <div class="tag">✦ ZENIX CREATIONS ✦</div>
-      <h1>Ton univers.<br><span class="gradient">Ton identité.</span></h1>
-      <p class="subtitle">
-        Prépare ta demande de miniature ou de bannière gaming.
-        Décris ton idée pour obtenir une création qui te correspond.
+      <p class="notice">
+        Ton application Mail s'ouvrira pour que tu puisses vérifier
+        et envoyer la commande.
       </p>
-    </div>
+    </form>
+  </div>
 
-    <h2 class="section-title">Nos créations</h2>
-    <p class="section-description">
-      Choisis le type de création que tu souhaites.
-    </p>
-
-    <div class="grid">
-
-      <div class="card">
-        <div class="card-icon">🖼️</div>
-        <h3>Miniature gaming</h3>
-        <p>Pour tes vidéos YouTube, Fortnite, Roblox et d'autres jeux.</p>
-        <div class="price">5 € <small>/ exemple de tarif</small></div>
-        <button class="btn" onclick="chooseCreation('Miniature gaming')">
-          Choisir
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🌌</div>
-        <h3>Bannière gaming</h3>
-        <p>Une bannière personnalisée pour donner du style à ta chaîne.</p>
-        <div class="price">8 € <small>/ exemple de tarif</small></div>
-        <button class="btn" onclick="chooseCreation('Bannière gaming')">
-          Choisir
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">💎</div>
-        <h3>Pack créateur</h3>
-        <p>Un projet regroupant une miniature et une bannière assorties.</p>
-        <div class="price">12 € <small>/ exemple de tarif</small></div>
-        <button class="btn" onclick="chooseCreation('Pack créateur')">
-          Choisir
-        </button>
-      </div>
-
-    </div>
-
-    <div class="panel">
-      <h2 class="section-title">Prépare ta demande</h2>
-      <p class="section-description">
-        Remplis les informations pour préparer ton projet.
-      </p>
-
-      <form id="orderForm">
-
-        <label for="creation">Type de création</label>
-        <select id="creation" required>
-          <option value="">Choisir une création</option>
-          <option>Miniature gaming</option>
-          <option>Bannière gaming</option>
-          <option>Pack créateur</option>
-        </select>
-
-        <label for="game">Jeu concerné</label>
-        <select id="game" required>
-          <option value="">Choisir un jeu</option>
-          <option>Fortnite</option>
-          <option>Roblox</option>
-          <option>Rocket League</option>
-          <option>Minecraft</option>
-          <option>Autre</option>
-        </select>
-
-        <label for="style">Style souhaité</label>
-        <select id="style" required>
-          <option value="">Choisir un style</option>
-          <option>Néon violet et bleu</option>
-          <option>Compétitif / esport</option>
-          <option>Coloré et dynamique</option>
-          <option>Sombre et mystérieux</option>
-          <option>Autre style</option>
-        </select>
-
-        <label for="description">Décris ton idée</label>
-        <textarea id="description" maxlength="1000"
-          placeholder="Exemple : mon pseudo, les couleurs, le texte et les éléments souhaités..."
-          required></textarea>
-
-        <button class="btn" type="submit">
-          Préparer ma demande
-        </button>
-
-      </form>
-
-      <div id="orderResult" class="result" hidden></div>
-      <button id="copyOrder" class="btn" type="button" hidden>
-        📋 Copier ma demande
-      </button>
-    </div>
-
-  </section>
+</section>
 
 </main>
 
@@ -565,6 +553,9 @@ footer strong {
 </footer>
 
 <script>
+// ✉️ REMPLACE CETTE ADRESSE PAR TON ADRESSE MAIL
+const MON_EMAIL = "TON-EMAIL@exemple.com";
+
 const navButtons = document.querySelectorAll(".nav-btn");
 const pages = document.querySelectorAll(".page");
 
@@ -586,6 +577,12 @@ navButtons.forEach(button => {
   });
 });
 
+function chooseCreation(value) {
+  showPage("orders");
+  document.getElementById("creation").value = value;
+  document.getElementById("creation").focus();
+}
+
 function generateNames() {
   const theme = document.getElementById("theme").value;
   const base = document.getElementById("baseName").value
@@ -600,76 +597,76 @@ function generateNames() {
     short: ["Zyn", "Kyo", "Nox", "Ryn", "Vyn", "Zex"]
   };
 
-  const endings = ["X", "Z", "FN", "ツ", "YT", "7"];
-  const words = lists[theme];
+  const endings = ["X", "Z", "FN", "YT", "7"];
   const names = [];
 
   while (names.length < 6) {
-    const word = words[Math.floor(Math.random() * words.length)];
-    const ending = endings[Math.floor(Math.random() * endings.length)];
-    const name = base
-      ? base + word + ending
-      : word + ending;
+    const word = lists[theme][
+      Math.floor(Math.random() * lists[theme].length)
+    ];
+
+    const ending = endings[
+      Math.floor(Math.random() * endings.length)
+    ];
+
+    const name = base ? base + word + ending : word + ending;
 
     if (!names.includes(name)) names.push(name);
   }
 
   const result = document.getElementById("nameResult");
-  result.innerHTML = "<strong>Voici tes idées :</strong><br>" +
-    names.map(name => "✦ " + escapeHTML(name)).join("<br>");
+  result.replaceChildren();
+
+  const title = document.createElement("strong");
+  title.textContent = "Voici tes idées :";
+  result.appendChild(title);
+
+  names.forEach(name => {
+    const line = document.createElement("p");
+    line.textContent = "✦ " + name;
+    result.appendChild(line);
+  });
+
   result.hidden = false;
 }
 
-function escapeHTML(text) {
-  return text.replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
-  })[char]);
-}
-
-function chooseCreation(value) {
-  showPage("orders");
-  document.getElementById("creation").value = value;
-  document.getElementById("creation").focus();
-}
-
-let preparedOrder = "";
-
-document.getElementById("orderForm").addEventListener("submit", event => {
+document.getElementById("orderForm").addEventListener("submit", function(event) {
   event.preventDefault();
 
+  if (
+    !MON_EMAIL ||
+    MON_EMAIL === "t.oudin@edu-groupesaintmichel.fr" ||
+    !MON_EMAIL.includes("@")
+  ) {
+    
+    return;
+  }
+
+  const name = document.getElementById("customerName").value.trim();
+  const email = document.getElementById("customerEmail").value.trim();
   const creation = document.getElementById("creation").value;
   const game = document.getElementById("game").value;
   const style = document.getElementById("style").value;
   const description = document.getElementById("description").value.trim();
 
-  preparedOrder =
-    "DEMANDE ZENIX AI\n\n" +
+  const subject = encodeURIComponent("Nouvelle commande Zenix AI - " + creation);
+
+  const body = encodeURIComponent(
+    "Bonjour, voici une commande Zenix AI.\n\n" +
+    "Pseudo / prénom : " + name + "\n" +
+    "Email du client : " + (email || "Non renseigné") + "\n" +
     "Création : " + creation + "\n" +
     "Jeu : " + game + "\n" +
-    "Style : " + style + "\n" +
-    "Description : " + description;
+    "Style : " + style + "\n\n" +
+    "Description :\n" + description + "\n\n" +
+    "Envoyé depuis le site Zenix AI."
+  );
 
-  const result = document.getElementById("orderResult");
-  result.textContent =
-    "Ta demande est préparée ! Copie-la pour la conserver ou la transmettre. " +
-    "Elle n'a pas encore été envoyée à Zenix AI.\n\n" + preparedOrder;
-  result.hidden = false;
+  const mailto = "mailto:" + MON_EMAIL +
+    "?subject=" + subject +
+    "&body=" + body;
 
-  document.getElementById("copyOrder").hidden = false;
-});
-
-document.getElementById("copyOrder").addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(preparedOrder);
-    document.getElementById("copyOrder").textContent = "✅ Demande copiée !";
-  } catch {
-    document.getElementById("orderResult").textContent +=
-      "\n\nLa copie automatique n'est pas disponible. Sélectionne et copie le texte ci-dessus.";
-  }
+  window.location.href = mailto;
 });
 </script>
 
