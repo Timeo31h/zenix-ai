@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,153 +8,257 @@
 <style>
 :root{color-scheme:dark;--bg:#080b16;--panel:#11172a;--text:#f4f5ff;--muted:#a7aec8;--line:#28314d;--input:#0b1020;--accent:#8b5cf6;--accent2:#22d3ee}
 *{box-sizing:border-box}
-body{margin:0;background:#060713;color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background-image:radial-gradient(ellipse at 15% 5%,#5424a833,transparent 35%),radial-gradient(ellipse at 90% 25%,#00d9ff20,transparent 30%),linear-gradient(180deg,#070816,#0a1024 48%,#060713)}
-#app{min-height:100vh;padding:25px 14px 35px}
+body{margin:0;background:#060713;color:var(--text);font-family:Inter,system-ui,sans-serif;background-image:radial-gradient(ellipse at 15% 5%,#5424a833,transparent 35%),radial-gradient(ellipse at 90% 25%,#00d9ff20,transparent 30%),linear-gradient(180deg,#070816,#0a1024 48%,#060713);background-attachment:fixed}
+#app{min-height:100vh;padding:28px 18px 36px}
 .wrap{width:min(850px,100%);margin:auto}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:30px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:.12em;font-size:20px}
-.mark{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#a855f7,#4f46e5,#06b6d4);font-size:26px;font-weight:1000}
-.pill,.small{font-size:12px;color:var(--muted)}
-.pill{border:1px solid var(--line);border-radius:99px;padding:8px 10px}
-.hero{text-align:center;margin-bottom:25px}
-.eyebrow{color:var(--accent2);font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
-h1{font-size:clamp(34px,7vw,56px);line-height:1.05;letter-spacing:-.04em;margin:12px 0}
+header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:30px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:.14em;font-size:20px}
+.mark{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:white;background:linear-gradient(145deg,#a855f7,#4f46e5,#06b6d4);font-size:27px;font-weight:1000}
+.pill{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:8px 11px}
+.hero{text-align:center;margin-bottom:26px}
+.eyebrow{color:var(--accent2);font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+h1{font-size:clamp(34px,7vw,58px);line-height:1.02;letter-spacing:-.045em;margin:13px 0}
 h1 span{background:linear-gradient(100deg,#a78bfa,#22d3ee);color:transparent;background-clip:text}
-.sub{color:var(--muted);max-width:540px;margin:0 auto;line-height:1.65;font-size:14px}
-.card,.tip-card,.tool-card,.feature{background:linear-gradient(145deg,#11172aee,#0b1020f2);border:1px solid #5966a355;border-radius:19px;padding:20px;box-shadow:0 15px 45px #0003}
-label{display:block;font-size:13px;font-weight:750;margin-bottom:8px}
-.field{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;background:var(--input);color:var(--text);font:inherit;outline:none}
-.field:focus{border-color:var(--accent)}
-.controls{display:grid;grid-template-columns:1.2fr 1fr .7fr;gap:14px;margin-top:19px}
-.styles{display:flex;flex-wrap:wrap;gap:7px}
+.sub{color:var(--muted);max-width:540px;margin:0 auto;line-height:1.65;font-size:15px}
+.card,.tip-card,.tool-card,.feature{background:linear-gradient(145deg,#11172aee,#0b1020f2);border:1px solid #5966a355;border-radius:20px;padding:20px}
+label{display:block;font-size:13px;font-weight:750;margin-bottom:9px}
+.field{width:100%;border:1px solid var(--line);border-radius:13px;padding:13px;background:var(--input);color:var(--text);font:inherit}
+.controls{display:grid;grid-template-columns:1.2fr 1fr .7fr;gap:16px;margin-top:20px}
+.styles{display:flex;flex-wrap:wrap;gap:8px}
 button{cursor:pointer;font:inherit}
-.style,.tool-button,.copy,.nav-btn{border:1px solid var(--line);background:var(--input);color:var(--muted);border-radius:10px;padding:9px 11px;font-size:12px}
-.style[aria-pressed="true"],.nav-btn.active{color:white;border-color:var(--accent);background:#302052}
-.generate{width:100%;margin-top:20px;border:1px solid #a5f3fc66;border-radius:13px;padding:14px;color:white;font-weight:900;background:linear-gradient(100deg,#7c3aed,#4f46e5 55%,#0891b2)}
-.results{display:none;margin-top:22px}.results.show{display:block}
-.result-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
-.result-head h2{font-size:17px}
-.names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.name{display:flex;align-items:center;justify-content:space-between;gap:7px;min-width:0;padding:12px;border:1px solid #45507888;border-radius:12px;background:#10182b}
-.name strong{overflow-wrap:anywhere;font-size:13px}
-.copy{flex-shrink:0;padding:7px}
-.toast,.tool-message{min-height:17px;color:var(--accent2);font-size:12px;margin-top:9px}
-.result-actions,.tool-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.style,.tool-button,.copy,.nav-btn{border:1px solid var(--line);background:var(--input);color:var(--muted);border-radius:11px;padding:10px 12px;font-size:13px}
+.style[aria-pressed=true],.nav-btn.active{color:white;border-color:var(--accent);background:linear-gradient(100deg,#6d28d9,#164e63)}
+.generate{width:100%;margin-top:22px;border:0;border-radius:14px;padding:15px;color:white;font-weight:900;background:linear-gradient(100deg,#7c3aed,#4f46e5,#0891b2)}
+.results{margin-top:23px;display:none}
+.results.show{display:block}
+.result-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.name{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px;border:1px solid #45507888;border-radius:13px;background:#10182b}
+.name strong{overflow-wrap:anywhere}
+.copy{padding:7px 9px}
+.result-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .result-actions .style{flex:1}
-.note{margin-top:17px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:12px;line-height:1.6}
-.extra-tools,.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:17px}
-.tool-card h3{margin:0 0 8px;font-size:15px}
-.tool-card p{color:var(--muted);font-size:12px;line-height:1.5}
-.tool-row .field{min-width:0;padding:10px}
+.toast,.tool-message{min-height:18px;color:var(--accent2);font-size:12px;margin-top:10px}
+.note,footer{color:var(--muted);font-size:12px;line-height:1.6;margin-top:20px}
+.extra-tools{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.tool-card h3{margin-top:0}
+.tool-card p,.tip-card p{color:var(--muted);font-size:13px;line-height:1.6}
+.tool-row{display:flex;gap:8px;align-items:center;margin-top:9px}
+.tool-row .field{min-width:0}
 .favorite-list{display:grid;gap:8px;margin-top:10px}
-.favorite-item{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;padding:9px;font-size:13px;overflow-wrap:anywhere}
-.favorite-item button{background:none;color:var(--muted);border:0}
-.counter{color:var(--muted);font-size:11px;margin-top:7px}
-.feature-grid{grid-template-columns:repeat(3,1fr)}
-.feature{text-align:center;padding:13px 9px}
+.favorite-item{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:9px;font-size:13px}
+.favorite-item button{border:0;background:transparent;color:var(--muted)}
+.counter,.small{color:var(--muted);font-size:12px;margin-top:7px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.feature{text-align:center;padding:14px}
 .feature strong,.feature span{display:block}
-.feature strong{font-size:13px;margin-bottom:5px}
-.feature span{font-size:11px;color:var(--muted);line-height:1.5}
-footer{text-align:center;color:var(--muted);font-size:12px;margin-top:25px}
-.main-nav{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:25px}
-.nav-btn{font-weight:800;font-size:13px;padding:11px 14px}
-.page{display:none}.page.active{display:block}
-.tips-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.tip-card{padding:18px}
-.tip-card h3{font-size:16px;margin:0 0 9px}
-.tip-card p,.tip-card li{font-size:13px;line-height:1.65}
-.tip-card p{color:var(--muted)}
-.tip-card ul{padding-left:19px}
-.tip-tag{display:inline-block;font-size:10px;letter-spacing:.08em;color:#a5f3fc;border:1px solid #22d3ee55;border-radius:99px;padding:5px 8px;margin-bottom:10px}
+.feature span{font-size:11px;color:var(--muted);margin-top:5px}
+.main-nav{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px}
+.nav-btn{font-weight:800}
+.page{display:none}
+.page.active{display:block}
+.tips-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tip-card h3{margin:0 0 9px}
+.tip-card ul{padding-left:20px;font-size:13px;line-height:1.8}
+.tip-tag{display:inline-block;color:#a5f3fc;border:1px solid #22d3ee55;border-radius:999px;padding:5px 8px;font-size:10px;margin-bottom:10px}
+.tip-card a{color:#67e8f9}
 .practice{margin-top:15px}
-@media(max-width:600px){header{margin-bottom:25px}.pill{display:none}.controls,.names,.extra-tools,.tips-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}.card{padding:16px}}
+footer{text-align:center}
+@media(max-width:600px){#app{padding:20px 13px}.pill{display:none}.controls,.names,.extra-tools,.tips-grid,.feature-grid{grid-template-columns:1fr}.main-nav{margin-top:0}}
 </style>
 </head>
 <body>
-<div id="app"><div class="wrap">
-<header><div class="brand"><div class="mark">Z</div> ZENIX <span style="color:var(--accent2)">AI</span></div><div class="pill">✦ Ton identité gaming commence ici</div></header>
-<nav class="main-nav" aria-label="Navigation principale">
+<div id="app">
+<div class="wrap">
+<header>
+<div class="brand"><div class="mark">Z</div> ZENIX <span style="color:var(--accent2)">AI</span></div>
+<div class="pill">✦ Ton identité gaming commence ici</div>
+</header>
+
+<nav class="main-nav">
 <button class="nav-btn active" data-page="home-page">🎮 Générateur</button>
 <button class="nav-btn" data-page="tips-page">📈 Progresser sur Fortnite</button>
+<button class="nav-btn" data-page="settings-page">⚙️ Réglages des pros</button>
 </nav>
 
-<div id="home-page" class="page active">
-<section class="hero"><div class="eyebrow">Ton prochain pseudo commence ici</div><h1>Un pseudo. <span>Ton univers.</span></h1><p class="sub">Trouve un pseudo pour Fortnite, Roblox, Rocket League ou tes réseaux. Choisis ton style et découvre de nouvelles idées en un clic.</p></section>
+<section id="home-page" class="page active">
+<section class="hero">
+<div class="eyebrow">Ton prochain pseudo commence ici</div>
+<h1>Un pseudo. <span>Ton univers.</span></h1>
+<p class="sub">Trouve un pseudo pour Fortnite, Roblox, Rocket League ou tes réseaux. Choisis ton style et découvre des idées en un clic.</p>
+</section>
+
 <main class="card">
 <label for="keyword">Ton mot préféré ou ton prénom (facultatif)</label>
-<input id="keyword" class="field" maxlength="22" placeholder="Ex. Shadow, Timéo, Nova…" autocomplete="off">
+<input id="keyword" class="field" maxlength="22" placeholder="Ex. Shadow, Timéo, Nova…">
 <div class="controls">
-<div><label>Choisis ton style</label><div class="styles" id="styles">
+<div>
+<label>Choisis ton style</label>
+<div class="styles" id="styles">
 <button class="style" data-style="tryhard" aria-pressed="true">⚡ Tryhard</button>
 <button class="style" data-style="pro" aria-pressed="false">👑 Pro</button>
 <button class="style" data-style="futuriste" aria-pressed="false">🌌 Futuriste</button>
 <button class="style" data-style="fun" aria-pressed="false">😈 Fun</button>
-</div></div>
-<div><label for="game">Pour quel univers ?</label><select id="game" class="field"><option value="mix">Tous les jeux</option><option value="fortnite">Fortnite</option><option value="roblox">Roblox</option><option value="rocket">Rocket League</option><option value="youtube">YouTube / réseaux</option></select></div>
-<div><label for="count">Quantité</label><select id="count" class="field"><option value="8">8 pseudos</option><option value="12">12 pseudos</option><option value="16">16 pseudos</option></select></div>
+</div>
+</div>
+<div>
+<label for="game">Pour quel univers ?</label>
+<select id="game" class="field">
+<option value="mix">Tous les jeux</option><option value="fortnite">Fortnite</option><option value="roblox">Roblox</option><option value="rocket">Rocket League</option><option value="youtube">YouTube / réseaux</option>
+</select>
+</div>
+<div>
+<label for="count">Quantité</label>
+<select id="count" class="field"><option value="8">8 pseudos</option><option value="12">12 pseudos</option><option value="16">16 pseudos</option></select>
+</div>
 </div>
 <button id="generate" class="generate">✦ Générer mes pseudos</button>
-<div class="results" id="results" aria-live="polite"><div class="result-head"><h2>✨ Tes idées de pseudos</h2><span class="small">Choisis tes préférés</span></div><div class="names" id="names"></div><div class="toast" id="toast"></div><div class="result-actions"><button class="style" id="copyAll">▣ Copier tous</button><button class="style" id="again">↻ En générer d’autres</button></div></div>
-<div class="note">Astuce : vérifie que le pseudo est disponible dans ton jeu. Ce générateur fonctionne dans ton navigateur.</div>
+<div class="results" id="results" aria-live="polite">
+<div class="result-head"><h2>✨ Tes idées de pseudos</h2><span class="small">Choisis tes préférés</span></div>
+<div class="names" id="names"></div><div class="toast" id="toast"></div>
+<div class="result-actions"><button class="style" id="copyAll">▣ Copier tous</button><button class="style" id="again">↻ En générer d’autres</button></div>
+</div>
+<div class="note">Astuce : vérifie que le pseudo est disponible dans ton jeu. La génération se fait directement dans ton navigateur.</div>
 </main>
 
 <section class="extra-tools">
-<div class="tool-card"><h3>⭐ Mes favoris</h3><p>Garde tes pseudos préférés.</p><div class="tool-row"><button class="tool-button" id="showFavorites">Afficher mes favoris</button><button class="tool-button" id="clearFavorites">Tout effacer</button></div><div class="counter" id="favoriteCount">0 favori</div><div class="favorite-list" id="favoriteList"></div><div class="tool-message" id="favoriteMessage"></div></div>
-<div class="tool-card"><h3>🛠️ Personnalise un pseudo</h3><p>Ajoute un petit détail à un pseudo existant.</p><label for="customName">Ton pseudo</label><input class="field" id="customName" maxlength="20" placeholder="Ex. Nova"><div class="tool-row"><select class="field" id="customAddon" aria-label="Détail à ajouter"><option value="X">Ajouter X</option><option value="ツ">Ajouter ツ</option><option value="FN">Ajouter FN</option><option value="YT">Ajouter YT</option><option value="_GG">Ajouter _GG</option><option value="99">Ajouter 99</option></select><button class="tool-button" id="customize">Personnaliser</button></div><div class="tool-row"><input class="field" id="customResult" readonly placeholder="Ton résultat apparaîtra ici"><button class="tool-button" id="copyCustom">Copier</button></div><div class="tool-message" id="customMessage"></div></div>
-</section>
-<section class="feature-grid"><div class="feature"><strong>⚡ Rapide</strong><span>Jusqu’à 16 idées en un clic</span></div><div class="feature"><strong>🎮 Multi-jeux</strong><span>Plusieurs univers gaming</span></div><div class="feature"><strong>🔒 Privé</strong><span>Ton mot reste dans ton navigateur</span></div></section>
+<div class="tool-card">
+<h3>⭐ Mes favoris</h3><p>Garde tes pseudos préférés.</p>
+<div class="tool-row"><button class="tool-button" id="showFavorites">Afficher mes favoris</button><button class="tool-button" id="clearFavorites">Tout effacer</button></div>
+<div class="counter" id="favoriteCount">0 favori</div><div class="favorite-list" id="favoriteList"></div><div class="tool-message" id="favoriteMessage"></div>
 </div>
+<div class="tool-card">
+<h3>🛠️ Personnalise un pseudo</h3><p>Ajoute un détail à un pseudo.</p>
+<label for="customName">Ton pseudo</label><input class="field" id="customName" maxlength="20" placeholder="Ex. Nova">
+<div class="tool-row"><select class="field" id="customAddon"><option value="X">Ajouter X</option><option value="ツ">Ajouter ツ</option><option value="FN">Ajouter FN</option><option value="YT">Ajouter YT</option><option value="_GG">Ajouter _GG</option><option value="99">Ajouter 99</option></select><button class="tool-button" id="customize">Personnaliser</button></div>
+<div class="tool-row"><input class="field" id="customResult" readonly placeholder="Résultat"><button class="tool-button" id="copyCustom">Copier</button></div><div class="tool-message" id="customMessage"></div>
+</div>
+</section>
+
+<section class="feature-grid">
+<div class="feature"><strong>⚡ Rapide</strong><span>Jusqu’à 16 idées en un clic</span></div>
+<div class="feature"><strong>🎮 Multi-jeux</strong><span>Plusieurs univers gaming</span></div>
+<div class="feature"><strong>🔒 Privé</strong><span>Ton mot reste dans le navigateur</span></div>
+</section>
+</section>
 
 <section id="tips-page" class="page">
-<section class="hero"><div class="eyebrow">Zenix Gaming Academy</div><h1>Progresse. <span>Game mieux.</span></h1><p class="sub">Des conseils simples pour t’améliorer sur Fortnite, sans triche ni raccourci magique. Le secret, c’est de s’entraîner intelligemment.</p></section>
+<section class="hero"><div class="eyebrow">Zenix Gaming Academy</div><h1>Progresse. <span>Game mieux.</span></h1><p class="sub">Des conseils pour progresser sur Fortnite sans triche.</p></section>
 <div class="tips-grid">
-<article class="tip-card"><span class="tip-tag">🎯 Viser</span><h3>1. Améliore ta précision</h3><p>Fais une petite séance d’échauffement avant les parties classées.</p><ul><li>Entraîne-toi à suivre une cible qui bouge.</li><li>Fais des tirs contrôlés.</li><li>Garde une sensibilité que tu maîtrises.</li></ul></article>
-<article class="tip-card"><span class="tip-tag">🏗️ Construction</span><h3>2. Travaille tes builds et edits</h3><p>La régularité compte plus que la vitesse au début.</p><ul><li>Répète les enchaînements lentement, puis accélère.</li><li>Construis pour te protéger.</li><li>Garde des touches confortables.</li></ul></article>
-<article class="tip-card"><span class="tip-tag">🧠 Stratégie</span><h3>3. Prends de meilleures décisions</h3><p>Gagner un combat, c’est aussi choisir le bon moment.</p><ul><li>Récupère du soin et des matériaux.</li><li>Évite les combats longs dans la tempête.</li><li>Si tu es mal placé, recule et soigne-toi.</li></ul></article>
-<article class="tip-card"><span class="tip-tag">🎮 En partie</span><h3>4. Apprends de tes erreurs</h3><p>Après une élimination, cherche une chose à améliorer.</p><ul><li>Étais-tu bien couvert ?</li><li>Avais-tu assez de vie ?</li><li>Fixe-toi un seul objectif pour la partie suivante.</li></ul></article>
-<article class="tip-card"><span class="tip-tag">⚙️ Réglages</span><h3>5. Trouve tes bons réglages</h3><p>Les meilleurs réglages sont ceux avec lesquels tu es régulier.</p><ul><li>Teste une modification à la fois.</li><li>Choisis des touches faciles à atteindre.</li><li>Sur manette, garde le contrôle sans forcer tes doigts.</li></ul></article>
-<article class="tip-card"><span class="tip-tag">📅 Routine</span><h3>6. Plan d’entraînement simple</h3><p>Une routine courte et régulière peut être plus utile qu’une session fatigante.</p><ul><li>5 minutes : échauffement de visée.</li><li>10 minutes : builds ou edits en créatif.</li><li>1 à 2 parties avec un objectif précis.</li></ul></article>
+<article class="tip-card"><span class="tip-tag">🎯 Visée</span><h3>1. Améliore ta précision</h3><p>Échauffe-toi avant les parties classées.</p><ul><li>Entraîne-toi à suivre une cible qui bouge.</li><li>Fais des tirs contrôlés.</li><li>Garde une sensibilité stable.</li></ul></article>
+<article class="tip-card"><span class="tip-tag">🏗️ Construction</span><h3>2. Travaille tes builds et edits</h3><p>La régularité compte plus que la vitesse.</p><ul><li>Répète les enchaînements lentement.</li><li>Construis pour te protéger.</li><li>Choisis des touches confortables.</li></ul></article>
+<article class="tip-card"><span class="tip-tag">🧠 Stratégie</span><h3>3. Prends de meilleures décisions</h3><p>Choisis le bon moment pour combattre.</p><ul><li>Récupère des soins et des matériaux.</li><li>Évite les combats longs dans la tempête.</li><li>Replie-toi si tu es en difficulté.</li></ul></article>
+<article class="tip-card"><span class="tip-tag">🎮 En partie</span><h3>4. Apprends de tes erreurs</h3><p>Après une élimination, réfléchis à ce que tu peux améliorer.</p><ul><li>Était-ce une bonne position ?</li><li>Avais-tu assez de vie ?</li><li>Choisis un objectif pour la partie suivante.</li></ul></article>
+<article class="tip-card"><span class="tip-tag">⚙️ Réglages</span><h3>5. Trouve tes bons réglages</h3><p>Les meilleurs réglages sont ceux que tu maîtrises.</p><ul><li>Teste une modification à la fois.</li><li>Choisis des touches accessibles.</li><li>Entraîne-toi régulièrement.</li></ul></article>
+<article class="tip-card"><span class="tip-tag">📅 Routine</span><h3>6. Plan d’entraînement</h3><p>Une routine simple suffit pour travailler un point précis.</p><ul><li>5 minutes : échauffement de visée.</li><li>10 minutes : builds ou edits.</li><li>1 à 2 parties : objectif du jour.</li></ul></article>
 </div>
-<div class="card practice"><h2>🔥 Ton défi du jour</h2><p class="sub" style="text-align:left;margin:0">Pendant tes trois prochaines parties, concentre-toi sur le placement et la protection avant de prendre un combat.</p><button class="generate" id="tipChallenge">Choisir un autre défi</button><p id="challengeText" class="tool-message">Défi : entraîne-toi à viser une cible en mouvement en mode créatif.</p></div>
+<div class="card practice"><h2>🔥 Ton défi du jour</h2><p id="challengeText">Défi : entraîne-toi à viser une cible en mouvement en mode créatif.</p><button class="generate" id="tipChallenge">Choisir un autre défi</button></div>
 </section>
+
+<section id="settings-page" class="page">
+<section class="hero"><div class="eyebrow">Zenix Pro Settings</div><h1>Réglages <span>des pros.</span></h1><p class="sub">Des exemples de réglages Fortnite. Les configurations peuvent changer : vérifie les fiches à jour avant de les copier.</p></section>
+<div class="tips-grid">
+<article class="tip-card"><span class="tip-tag">🖱️ Clavier / souris</span><h3>Peterbot</h3><p>Exemple de configuration souris publiée ; à vérifier sur sa fiche actuelle.</p><ul><li>DPI : 800</li><li>Sensibilité X : 6,4 %</li><li>Sensibilité Y : 6,4 %</li><li>Visée : 45 %</li><li>Lunette : 45 %</li><li>Construction : 100 %</li><li>Modification : 100 %</li></ul><a href="https://prosettings.net/players/peterbot/" target="_blank" rel="noopener noreferrer">Voir sa fiche ↗</a></article>
+<article class="tip-card"><span class="tip-tag">🖱️ Clavier / souris</span><h3>Clix</h3><p>Exemple de configuration clavier/souris à vérifier sur sa fiche actuelle.</p><ul><li>DPI : 800</li><li>Sensibilité X : 8,7 %</li><li>Sensibilité Y : 6,3 %</li><li>Visée : 60 %</li><li>Lunette : 35 %</li><li>Construction / modification : 100 %</li></ul><a href="https://prosettings.net/players/clix/" target="_blank" rel="noopener noreferrer">Voir sa fiche ↗</a></article>
+<article class="tip-card"><span class="tip-tag">🖱️ Clavier / souris</span><h3>Bugha</h3><p>Champion de la Coupe du monde 2019. Les réglages évoluent : vérifie sa fiche.</p><ul><li>DPI : 800 (à vérifier)</li><li>Sensibilité X/Y : à vérifier</li><li>Visée et lunette : à vérifier</li><li>Construction / modification : à vérifier</li></ul><a href="https://proconfig.net/fortnite/" target="_blank" rel="noopener noreferrer">Voir la base de réglages ↗</a></article>
+<article class="tip-card"><span class="tip-tag">🎮 Manette</span><h3>Mero</h3><p>Exemple de réglages manette publiés ; vérifie les valeurs à jour.</p><ul><li>Vue horizontale / verticale : 43 % / 43 %</li><li>Visée ADS H/V : 7 % / 8 %</li><li>Construction : 2,0x</li><li>Modification : 1,9x</li><li>Zone morte gauche / droite : 7 % / 8 %</li><li>Courbe : linéaire</li></ul><a href="https://proconfig.net/fortnite/mero/" target="_blank" rel="noopener noreferrer">Voir les réglages de Mero ↗</a></article>
+<article class="tip-card"><span class="tip-tag">🎮 Manette</span><h3>Reet</h3><p>Exemple de configuration manette à vérifier.</p><ul><li>Vue horizontale / verticale : 47 % / 57 %</li><li>Visée ADS H/V : 16 % / 16 %</li><li>Construction / modification : 1,8x / 1,8x</li><li>Zone morte : 6 % / 6 %</li><li>Courbe : exponentielle (à vérifier)</li><li>Vibration : désactivée</li></ul><a href="https://prosettings.net/players/reet/" target="_blank" rel="noopener noreferrer">Voir la fiche de Reet ↗</a></article>
+<article class="tip-card"><span class="tip-tag">🎮 Manette</span><h3>FHD</h3><p>Exemple de configuration manette à vérifier sur un guide actualisé.</p><ul><li>Vue H/V : 44 % / 44 %</li><li>Visée ADS H/V : 8 % / 8 %</li><li>Construction : 2,0x</li><li>Modification : 1,9x</li><li>Zone morte : 9 % / 8 %</li><li>Courbe : linéaire (à vérifier)</li></ul><a href="https://www.setup.gg/game/fortnite/best-controller-settings/" target="_blank" rel="noopener noreferrer">Voir le guide manette ↗</a></article>
+<article class="tip-card"><span class="tip-tag">🎮 Manette</span><h3>Réglages de départ</h3><p>Une base à essayer puis à adapter à ton confort.</p><ul><li>Configuration : Builder Pro</li><li>Vibration : désactivée si tu préfères</li><li>Vue : 40–45 %</li><li>Visée ADS : environ 15 %</li><li>Zone morte : autour de 5 %, augmente si le stick dérive</li><li>Courbe : linéaire ou exponentielle</li></ul><a href="https://www.setup.gg/game/fortnite/best-controller-settings/" target="_blank" rel="noopener noreferrer">Consulter le guide ↗</a></article>
+<article class="tip-card"><span class="tip-tag">🧪 Test rapide</span><h3>Trouve ce qui te convient</h3><ul><li>Échauffe-toi en mode Créatif.</li><li>Teste le suivi de cible.</li><li>Si tu dépasses souvent la cible, baisse légèrement la sensibilité.</li><li>Si tu tournes trop lentement, augmente-la un peu.</li><li>Teste plusieurs sessions avant de décider.</li></ul></article>
+<article class="tip-card"><span class="tip-tag">ℹ️ À retenir</span><h3>Les pros sont différents</h3><p>La manette, la souris et les habitudes changent ce qui fonctionne. Une sensibilité souris ne se copie pas sur une manette.</p><p>Ces réglages ne garantissent pas de gagner : choisis ceux avec lesquels tu es régulier.</p></article>
+</div>
+</section>
+
 <footer>ZENIX AI · Outils et conseils gaming gratuits · Créé pour les gamers</footer>
-</div></div>
+</div>
+</div>
 
 <script>
-const styles=document.querySelectorAll('.style[data-style]');
+const $=id=>document.getElementById(id);
+const styleButtons=document.querySelectorAll('[data-style]');
 let selected='tryhard';
-styles.forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.style;styles.forEach(b=>b.setAttribute('aria-pressed',String(b===btn)))}));
+styleButtons.forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.style;styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b===btn)))}));
+
 const prefixes={tryhard:['Vex','Clutch','Rush','Flick','Cr4zy','Zerq','Aim'],pro:['Prime','Elite','Royal','Ace','Legend','Vanta','Ultra'],futuriste:['Nova','Void','Nex','Quantum','Orbit','Neon','Cyber'],fun:['Boubou','Waffle','Panda','Mochi','ZigZag','Patate','Pixel']};
 const suffixes={tryhard:['ツ','X','FN','OnTop','ツ7','Xx','QT'],pro:['Pro','IV','One','VIP','GG','Prime','Z'],futuriste:['Byte','Flux','Wave','Core','星','404','X'],fun:['LOL','Banane','Panda','Mdr','Pop','Biscuit','XD']};
 const gameBits={fortnite:['FN','Build','Drop','Storm'],roblox:['Blox','RBX','Obby','Brick'],rocket:['Boost','Flip','Aerial','RL'],youtube:['TV','Clips','Live','YT'],mix:['','X','GG','']};
 function clean(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9_]/g,'').slice(0,14)}
-function generate(){
-const raw=document.getElementById('keyword').value.trim(),base=clean(raw)||'',game=document.getElementById('game').value,count=Number(document.getElementById('count').value)||8,p=prefixes[selected],s=suffixes[selected],g=gameBits[game],out=new Set();let tries=0;
-while(out.size<count&&tries<250){tries++;const a=p[Math.floor(Math.random()*p.length)],b=s[Math.floor(Math.random()*s.length)],c=g[Math.floor(Math.random()*g.length)];let n;
-if(base){const o=[base+a,a+base,base+b,a+base+b,base+(c||b),a+base+(c||''),base[0].toUpperCase()+base.slice(1)+b,a+base[0].toUpperCase()+base.slice(1)];n=o[Math.floor(Math.random()*o.length)]}
-else{const o=[a+b,a+(c||b),a+'_'+b,a+b+(c||''),a+Math.floor(Math.random()*99+1),a+'ツ',a+'_'+(c||b)];n=o[Math.floor(Math.random()*o.length)]}
-n=n.slice(0,20);if(n.length>2)out.add(n)}
-const holder=document.getElementById('names');holder.innerHTML='';
-[...out].forEach(name=>{const item=document.createElement('div');item.className='name';const strong=document.createElement('strong');strong.textContent=name;const copy=document.createElement('button');copy.className='copy';copy.textContent='Copier';copy.addEventListener('click',()=>copyText(name,document.getElementById('toast')));const fav=document.createElement('button');fav.className='copy';fav.textContent=favorites.includes(name)?'★':'☆';fav.title='Ajouter aux favoris';fav.addEventListener('click',()=>{addFavorite(name);fav.textContent=favorites.includes(name)?'★':'☆'});item.append(strong,copy,fav);holder.append(item)});
-document.getElementById('results').classList.add('show');document.getElementById('toast').textContent='';
-}
-document.getElementById('generate').addEventListener('click',generate);
-document.getElementById('again').addEventListener('click',generate);
-document.getElementById('keyword').addEventListener('keydown',e=>{if(e.key==='Enter')generate()});
+
+let favorites=[];
+try{favorites=JSON.parse(localStorage.getItem('zenix-favorites')||'[]');if(!Array.isArray(favorites))favorites=[]}catch(e){favorites=[]}
+function saveFavorites(){try{localStorage.setItem('zenix-favorites',JSON.stringify(favorites))}catch(e){$('favoriteMessage').textContent='Sauvegarde indisponible dans ce navigateur.'}}
 async function copyText(value,target){try{await navigator.clipboard.writeText(value);target.textContent='Copié : '+value}catch(e){target.textContent='Copie indisponible : '+value}}
-document.getElementById('copyAll').addEventListener('click',()=>{const all=[...document.querySelectorAll('#names strong')].map(el=>el.textContent).join('\n');if(!all){document.getElementById('toast').textContent='Génère d’abord des pseudos.';return}copyText(all,document.getElementById('toast'))});
-let favorites=[];try{favorites=JSON.parse(localStorage.getItem('zenix-favorites')||'[]');if(!Array.isArray(favorites))favorites=[]}catch(e){favorites=[]}
-const favoriteList=document.getElementById('favoriteList'),favoriteMessage=document.getElementById('favoriteMessage');
-function saveFavorites(){try{localStorage.setItem('zenix-favorites',JSON.stringify(favorites))}catch(e){}}
-function renderFavorites(){favoriteList.innerHTML='';document.getElementById('favoriteCount').textContent=favorites.length+' favori'+(favorites.length>1?'s':'');favorites.forEach(name=>{const row=document.createElement('div');row.className='favorite-item';const label=document.createElement('strong');label.textContent=name;const copy=document.createElement('button');copy.textContent='Copier';copy.addEventListener('click',()=>copyText(name,favoriteMessage));const remove=document.createElement('button');remove.textContent='Retirer';remove.addEventListener('click',()=>{favorites=favorites.filter(n=>n!==name);saveFavorites();renderFavorites()});row.append(label,copy,remove);favoriteList.append(row)})}
-function addFavorite(name){if(!favorites.includes(name))favorites.push(name);saveFavorites();renderFavorites();favoriteMessage.textContent='Favori enregistré : '+name}
-document.getElementById('showFavorites').addEventListener('click',()=>{renderFavorites();favoriteMessage.textContent=favorites.length?'Voici tes favoris.':'Tu n’as pas encore de favoris.'});
-document.getElementById('clearFavorites').addEventListener('click',()=>{favorites=[];saveFavorites();renderFavorites();favoriteMessage.textContent='Liste effacée.'});
-document.getElementById('customize').addEventListener('click',()=>{const base=clean(document.getElementById('customName').value.trim());if(!base){document.getElementById('customMessage').textContent='Entre d’abord un pseudo.';return}document.getElementById('customResult').value=(base+document.getElementById('customAddon').value).slice(0,20);document.getElementById('customMessage').textContent='Voilà une nouvelle variante !'});
-document.getElementById('copyCustom').addEventListener('click',()=>{const value=document.getElementById('customResult').value;if(value)copyText(value,document.getElementById('customMessage'));else document.getElementById('customMessage').textContent='Personnalise un pseudo avant de le copier.'});
-document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b===btn));document.querySelectorAll('.page').forEach(page=>page.classList.toggle('active',page.id===btn.dataset.page));window.scrollTo({top:0,behavior:'smooth'})}));
-const challenges=['Défi : fais quelques minutes de suivi de cible en créatif.','Défi : cherche toujours une couverture avant de tirer.','Défi : fais un edit propre sans chercher la vitesse.','Défi : repère une décision à améliorer après un combat.','Défi : vérifie tes soins et matériaux avant un combat.'];
-document.getElementById('tipChallenge').addEventListener('click',()=>{const old=document.getElementById('challengeText').textContent;let next=challenges[Math.floor(Math.random()*challenges.length)];if(next===old)next=challenges[(challenges.indexOf(next)+1)%challenges.length];document.getElementById('challengeText').textContent=next});
+function renderFavorites(){
+$('favoriteList').innerHTML='';
+$('favoriteCount').textContent=favorites.length+' favori'+(favorites.length>1?'s':'');
+favorites.forEach(name=>{
+const row=document.createElement('div');row.className='favorite-item';
+const label=document.createElement('strong');label.textContent=name;
+const actions=document.createElement('div');
+const copy=document.createElement('button');copy.textContent='Copier';copy.addEventListener('click',()=>copyText(name,$('favoriteMessage')));
+const remove=document.createElement('button');remove.textContent='Retirer';remove.addEventListener('click',()=>{favorites=favorites.filter(n=>n!==name);saveFavorites();renderFavorites();$('favoriteMessage').textContent='Favori retiré.'});
+actions.append(copy,remove);row.append(label,actions);$('favoriteList').append(row)
+})
+}
+function addFavorite(name){if(favorites.includes(name)){$('favoriteMessage').textContent='Déjà dans tes favoris.';return}favorites.push(name);saveFavorites();renderFavorites();$('favoriteMessage').textContent='Ajouté aux favoris : '+name}
+
+function generate(){
+const raw=$('keyword').value.trim(),base=clean(raw),game=$('game').value,count=Number($('count').value)||8;
+const p=prefixes[selected],s=suffixes[selected],g=gameBits[game],out=new Set();
+let tries=0;
+while(out.size<count&&tries<300){
+tries++;
+const a=p[Math.floor(Math.random()*p.length)],b=s[Math.floor(Math.random()*s.length)],c=g[Math.floor(Math.random()*g.length)];
+let n;
+if(base){
+const options=[base+a,a+base,base+b,a+base+b,base+(c||b),a+base+(c||''),base[0].toUpperCase()+base.slice(1)+b];
+n=options[Math.floor(Math.random()*options.length)]
+}else{
+const options=[a+b,a+(c||b),a+'_'+b,a+b+(c||''),a+Math.floor(Math.random()*99+1),a+'ツ',a+'_'+(c||b)];
+n=options[Math.floor(Math.random()*options.length)]
+}
+n=n.slice(0,20);if(n.length>2)out.add(n)
+}
+const holder=$('names');holder.innerHTML='';
+[...out].forEach(name=>{
+const item=document.createElement('div');item.className='name';
+const strong=document.createElement('strong');strong.textContent=name;
+const copy=document.createElement('button');copy.className='copy';copy.textContent='Copier';
+copy.addEventListener('click',()=>copyText(name,$('toast')));
+const fav=document.createElement('button');fav.className='copy';fav.textContent=favorites.includes(name)?'★':'☆';fav.title='Ajouter aux favoris';
+fav.addEventListener('click',()=>{addFavorite(name);fav.textContent=favorites.includes(name)?'★':'☆'});
+item.append(strong,copy,fav);holder.append(item)
+});
+$('results').classList.add('show');$('toast').textContent=''
+}
+$('generate').addEventListener('click',generate);
+$('again').addEventListener('click',generate);
+$('keyword').addEventListener('keydown',e=>{if(e.key==='Enter')generate()});
+$('copyAll').addEventListener('click',()=>{const all=[...document.querySelectorAll('#names strong')].map(el=>el.textContent).join('\n');if(all)copyText(all,$('toast'));else $('toast').textContent='Génère d’abord des pseudos.'});
+$('showFavorites').addEventListener('click',()=>{renderFavorites();$('favoriteMessage').textContent=favorites.length?'Voici tes favoris.':'Tu n’as pas encore de favoris.'});
+$('clearFavorites').addEventListener('click',()=>{favorites=[];saveFavorites();renderFavorites();$('favoriteMessage').textContent='Favoris effacés.'});
+$('customize').addEventListener('click',()=>{const base=clean($('customName').value.trim());if(!base){$('customResult').value='';$('customMessage').textContent='Entre d’abord un pseudo.';return}$('customResult').value=(base+$('customAddon').value).slice(0,20);$('customMessage').textContent='Nouvelle variante créée !'});
+$('copyCustom').addEventListener('click',()=>{const v=$('customResult').value;if(v)copyText(v,$('customMessage'));else $('customMessage').textContent='Personnalise un pseudo avant de copier.'});
+
+document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{
+document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b===btn));
+document.querySelectorAll('.page').forEach(page=>page.classList.toggle('active',page.id===btn.dataset.page));
+window.scrollTo({top:0,behavior:'smooth'})
+}));
+
+const challenges=[
+'Défi : entraîne-toi à suivre une cible en mouvement en Créatif.',
+'Défi : cherche une couverture avant chaque combat.',
+'Défi : réalise des edits propres sans chercher la vitesse.',
+'Défi : après une élimination, repère une décision à améliorer.',
+'Défi : vérifie tes soins et tes matériaux avant de combattre.'
+];
+$('tipChallenge').addEventListener('click',()=>{
+let next=challenges[Math.floor(Math.random()*challenges.length)];
+if(challenges.length>1&&next===$('challengeText').textContent)next=challenges[(challenges.indexOf(next)+1)%challenges.length];
+$('challengeText').textContent=next
+});
 renderFavorites();
 </script>
 </body>
