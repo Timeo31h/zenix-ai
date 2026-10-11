@@ -4,906 +4,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090914">
-<title>Zenix AI — Studio Gaming</title>
-<meta name="description" content="Zenix AI, le studio créatif gaming pour tes miniatures YouTube, bannières et concepts Fortnite et Roblox.">
-
+<title>Zenix AI — Gaming & Miniatures</title>
 <style>
 :root {
-  --bg: #090914;
-  --panel: #111121;
-  --purple: #9565ff;
-  --pink: #ed5bff;
-  --text: #f6f3ff;
-  --muted: #aaa8c3;
-  --border: rgba(177, 137, 255, .19);
+  --bg:#080b16; --panel:#11172a; --text:#f4f5ff;
+  --muted:#a7aec8; --line:#28314d; --input:#0b1020;
+  --accent:#8b5cf6; --cyan:#22d3ee;
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, Arial, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
+*{box-sizing:border-box}
+body{
+  margin:0;background:#060713;color:var(--text);
+  font-family:Inter,system-ui,-apple-system,sans-serif;
+  background-image:radial-gradient(ellipse at 15% 5%,#5424a833,transparent 35%),radial-gradient(ellipse at 90% 25%,#00d9ff20,transparent 30%),linear-gradient(180deg,#070816,#0a1024 48%,#060713);
+  background-attachment:fixed;
 }
-
-a { color: inherit; text-decoration: none; }
-button, input, select, textarea { font: inherit; }
-button { cursor: pointer; }
-
-.container {
-  width: min(1120px, 90%);
-  margin: auto;
+#app{min-height:100vh;padding:24px 16px 36px}
+.wrap{width:min(950px,100%);margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:30px}
+.brand{font-size:23px;font-weight:950;letter-spacing:.13em}
+.mark{display:inline-grid;place-items:center;width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,#a855f7,#4f46e5,#06b6d4);margin-right:8px}
+.hero{text-align:center;margin:30px auto}
+.eyebrow{color:var(--cyan);font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+h1{font-size:clamp(34px,7vw,58px);line-height:1.05;margin:13px 0}
+h1 span{background:linear-gradient(100deg,#a78bfa,#22d3ee);color:transparent;background-clip:text}
+.sub{color:var(--muted);max-width:620px;margin:0 auto;line-height:1.7}
+.card,.tip-card,.order-option,.tool-card{
+  background:linear-gradient(145deg,#11172aee,#0b1020f2);
+  border:1px solid #5966a355;border-radius:20px;padding:22px;
+  box-shadow:0 18px 50px #0003;margin-bottom:16px;
 }
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgba(9,9,20,.88);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--border);
+.main-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+button,select,input,textarea{font:inherit}
+button{cursor:pointer}
+.nav-btn,.style,.tool-button{
+  border:1px solid var(--line);border-radius:11px;padding:10px 13px;
+  color:var(--muted);background:var(--input);font-weight:750
 }
-
-nav {
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.logo {
-  font-size: 25px;
-  font-weight: 950;
-  letter-spacing: -1.5px;
-}
-
-.logo span {
-  color: var(--purple);
-  text-shadow: 0 0 24px var(--purple);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.nav-links a:hover { color: white; }
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 0;
-  border-radius: 12px;
-  padding: 13px 20px;
-  font-weight: 800;
-  color: white;
-  background: linear-gradient(110deg, #8050ff, #c34dff);
-  box-shadow: 0 5px 30px rgba(142,78,255,.2);
-  transition: .2s;
-}
-
-.btn:hover { transform: translateY(-2px); filter: brightness(1.12); }
-
-.btn-secondary {
-  background: #17172a;
-  border: 1px solid var(--border);
-  box-shadow: none;
-}
-
-.hero {
-  position: relative;
-  padding: 100px 0 85px;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 550px;
-  height: 550px;
-  border-radius: 50%;
-  background: #7137ff;
-  filter: blur(170px);
-  opacity: .19;
-  top: -240px;
-  right: -100px;
-  pointer-events: none;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  align-items: center;
-  gap: 55px;
-}
-
-.eyebrow {
-  display: inline-block;
-  border: 1px solid var(--border);
-  background: rgba(149,101,255,.09);
-  color: #cbb6ff;
-  padding: 7px 12px;
-  border-radius: 30px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 22px;
-}
-
-h1 {
-  font-size: clamp(42px, 6vw, 70px);
-  line-height: 1.04;
-  letter-spacing: -3px;
-  margin-bottom: 22px;
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, #a58aff, #f17dff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero p, .section-intro {
-  color: var(--muted);
-  max-width: 570px;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 30px;
-}
-
-.hero-note {
-  margin-top: 19px;
-  font-size: 12px;
-  color: #8987a7;
-}
-
-.preview {
-  border: 1px solid var(--border);
-  background: linear-gradient(145deg, #19142e, #10101d 65%);
-  border-radius: 24px;
-  padding: 22px;
-  box-shadow: 0 25px 100px rgba(100,55,255,.13);
-  transform: rotate(1deg);
-}
-
-.preview-top {
-  display: flex;
-  justify-content: space-between;
-  color: var(--muted);
-  font-size: 12px;
-  margin-bottom: 17px;
-}
-
-.artwork {
-  min-height: 240px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  background:
-    radial-gradient(circle at 50% 40%, #783bff 0, transparent 38%),
-    linear-gradient(135deg, #101b40, #3c1267 55%, #10101d);
-}
-
-.artwork::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    125deg, transparent 0 35px,
-    rgba(255,255,255,.045) 36px 38px
-  );
-}
-
-.artwork > * { position: relative; }
-
-.artwork .small {
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 4px;
-  color: #d7c8ff;
-}
-
-.artwork .big {
-  font-size: clamp(38px, 5vw, 58px);
-  font-weight: 1000;
-  line-height: 1;
-  letter-spacing: -2px;
-  color: white;
-  text-shadow: 0 5px 35px #a75aff;
-}
-
-.preview-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 16px;
-  font-size: 13px;
-}
-
-.tag {
-  color: #d6c7ff;
-  background: #292044;
-  border-radius: 8px;
-  padding: 5px 9px;
-  font-size: 11px;
-}
-
-section { padding: 75px 0; }
-
-.section-head {
-  text-align: center;
-  margin-bottom: 38px;
-}
-
-h2 {
-  font-size: clamp(28px, 4vw, 42px);
-  letter-spacing: -1.5px;
-  line-height: 1.2;
-  margin-bottom: 12px;
-}
-
-.section-intro { margin: auto; }
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.card {
-  padding: 25px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: linear-gradient(145deg, #151528, #0e0e1b);
-  transition: .2s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(174,127,255,.6);
-}
-
-.card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: rgba(149,101,255,.14);
-  display: grid;
-  place-items: center;
-  font-size: 23px;
-  margin-bottom: 20px;
-}
-
-.card h3 { font-size: 19px; margin-bottom: 9px; }
-.card p { color: var(--muted); font-size: 14px; }
-.card a { display: inline-block; margin-top: 18px; color: #c5aaff; font-size: 13px; font-weight: 800; }
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 17px;
-}
-
-.gallery-item {
-  border: 1px solid var(--border);
-  border-radius: 17px;
-  overflow: hidden;
-  background: var(--panel);
-}
-
-.gallery-art {
-  aspect-ratio: 16 / 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 12px;
-  font-weight: 1000;
-  font-size: clamp(22px, 3vw, 35px);
-  line-height: 1.1;
-  text-shadow: 0 4px 20px #000;
-}
-
-.gallery-art small { font-size: 10px; letter-spacing: 3px; margin-bottom: 10px; }
-
-.art-fortnite {
-  background: radial-gradient(circle, #2d9df0, transparent 50%),
-  linear-gradient(135deg,#071a45,#17113a,#5118a4);
-}
-
-.art-roblox {
-  background: radial-gradient(circle, #ff7548, transparent 50%),
-  linear-gradient(135deg,#42142b,#9a2b3c,#17101f);
-}
-
-.art-neon {
-  background: radial-gradient(circle, #b03cff, transparent 50%),
-  linear-gradient(135deg,#10132f,#33115b,#0c0b19);
-}
-
-.gallery-info { padding: 16px; }
-.gallery-info h3 { font-size: 15px; }
-.gallery-info p { color: var(--muted); font-size: 12px; margin-top: 4px; }
-
-.tool-layout {
-  display: grid;
-  grid-template-columns: .8fr 1.2fr;
-  gap: 25px;
-  align-items: start;
-}
-
-.tool-description {
-  padding-top: 15px;
-}
-
-.tool-description p { color: var(--muted); margin: 15px 0; }
-
-.tool-box {
-  padding: 26px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-}
-
-label {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 7px;
-}
-
-.field { margin-bottom: 17px; }
-
-input, select, textarea {
-  width: 100%;
-  border: 1px solid #33304e;
-  background: #0b0b17;
-  color: white;
-  padding: 12px 13px;
-  border-radius: 10px;
-  outline: none;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--purple);
-}
-
-textarea { min-height: 90px; resize: vertical; }
-
-.result {
-  display: none;
-  margin-top: 20px;
-  padding: 18px;
-  border: 1px solid var(--border);
-  background: #0b0b17;
-  border-radius: 12px;
-}
-
-.result pre {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  color: #d5c7ff;
-  font: inherit;
-  font-size: 13px;
-}
-
-.result-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.result-actions .btn { font-size: 12px; padding: 10px 13px; }
-
-.order-section {
-  background: radial-gradient(ellipse at 50% 100%, #271343, transparent 65%);
-}
-
-.notice {
-  color: #aaa8c3;
-  font-size: 12px;
-  margin-top: 14px;
-}
-
-footer {
-  border-top: 1px solid var(--border);
-  padding: 30px 0;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.footer-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-footer strong { color: white; }
-
-@media (max-width: 760px) {
-  .nav-links { gap: 12px; font-size: 12px; }
-  .nav-cta { display: none; }
-  .hero { padding: 65px 0; }
-  .hero-grid, .tool-layout { grid-template-columns: 1fr; }
-  .hero-grid { gap: 35px; }
-  .cards, .gallery { grid-template-columns: 1fr; }
-  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  h1 { letter-spacing: -2px; }
-  section { padding: 55px 0; }
-  .artwork { min-height: 210px; }
-}
-
-@media (max-width: 430px) {
-  .logo { font-size: 21px; }
-  .nav-links { gap: 10px; }
-  .nav-links a { font-size: 11px; }
-  .gallery { grid-template-columns: 1fr; }
-  .tool-box { padding: 17px; }
+.nav-btn.active,.style.active{color:white;border-color:var(--accent);background:linear-gradient(100deg,#6d28d9,#164e63)}
+.page{display:none}.page.active{display:block}
+label{display:block;font-size:13px;font-weight:750;margin:14px 0 8px}
+.field{width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--input);color:var(--text)}
+.field:focus{outline:2px solid #8b5cf666}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.styles{display:flex;gap:8px;flex-wrap:wrap}
+.generate{width:100%;margin-top:18px;border:0;border-radius:13px;padding:15px;color:white;font-weight:900;background:linear-gradient(100deg,#7c3aed,#4f46e5,#0891b2)}
+.names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.name{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px;border:1px solid var(--line);border-radius:12px;overflow-wrap:anywhere}
+.small-btn{border:1px solid var(--line);background:var(--input);color:white;border-radius:8px;padding:7px}
+.feature-grid,.order-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.feature{padding:15px;border:1px solid var(--line);border-radius:13px;text-align:center}
+.feature p,.order-option p,.tip-card p{color:var(--muted);font-size:13px;line-height:1.6}
+.price{font-size:24px;font-weight:950;color:var(--cyan);margin:12px 0}
+.order-form{display:grid;gap:8px}
+.note,footer{color:var(--muted);font-size:12px;line-height:1.6;margin-top:20px}
+footer{text-align:center}
+.message{color:var(--cyan);font-size:13px;overflow-wrap:anywhere}
+.preview{border:1px dashed #5966a3;border-radius:14px;padding:14px;margin-top:15px}
+@media(max-width:600px){
+ .grid,.names,.feature-grid,.order-grid{grid-template-columns:1fr}
+ header{align-items:flex-start}
+ .card,.tip-card,.order-option,.tool-card{padding:16px}
 }
 </style>
 </head>
-
 <body>
-
+<div id="app"><div class="wrap">
 <header>
-  <nav class="container">
-    <a class="logo" href="#accueil">ZENIX<span> AI</span></a>
-
-    <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#outil">Outil IA</a>
-    </div>
-
-    <a class="btn nav-cta" href="#commande">Commander ↗</a>
-  </nav>
+  <div class="brand"><span class="mark">Z</span>ZENIX <span style="color:var(--cyan)">AI</span></div>
+  <span class="eyebrow">GAMING CREATOR STUDIO</span>
 </header>
 
-<main>
+<nav class="main-nav">
+  <button class="nav-btn active" data-page="home">🎮 Générateur</button>
+  <button class="nav-btn" data-page="tips">🏆 Conseils Fortnite</button>
+  <button class="nav-btn" data-page="settings">⚙️ Réglages</button>
+  <button class="nav-btn" data-page="orders">🎨 Miniatures & bannières</button>
+</nav>
 
-<section class="hero" id="accueil">
-  <div class="container hero-grid">
-
-    <div>
-      <span class="eyebrow">✦ STUDIO CRÉATIF GAMING</span>
-
-      <h1>
-        Ton univers.<br>
-        Ton style.<br>
-        <span class="gradient-text">Ta miniature.</span>
-      </h1>
-
-      <p>
-        Bienvenue chez Zenix AI : imagine des miniatures gaming,
-        des bannières et des concepts créatifs pour donner du style
-        à ta chaîne YouTube.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn" href="#commande">Créer mon projet →</a>
-        <a class="btn btn-secondary" href="#portfolio">Voir les créations</a>
+<section id="home" class="page active">
+  <div class="hero">
+    <div class="eyebrow">Ton identité gaming commence ici</div>
+    <h1>Un pseudo. <span>Ton univers.</span></h1>
+    <p class="sub">Trouve ton prochain pseudo gaming et découvre les services de création Zenix.</p>
+  </div>
+  <div class="card">
+    <label for="keyword">Ton prénom ou un mot (facultatif)</label>
+    <input class="field" id="keyword" maxlength="22" placeholder="Ex. Shadow, Nova...">
+    <div class="grid">
+      <div>
+        <label>Ton style</label>
+        <div class="styles">
+          <button class="style active" data-style="tryhard">⚡ Tryhard</button>
+          <button class="style" data-style="pro">👑 Pro</button>
+          <button class="style" data-style="futuriste">🌌 Futuriste</button>
+          <button class="style" data-style="fun">😈 Fun</button>
+        </div>
       </div>
-
-      <p class="hero-note">
-        Gaming · YouTube · Fortnite · Roblox · Créativité
-      </p>
+      <div>
+        <label for="game">Ton jeu</label>
+        <select id="game" class="field">
+          <option value="mix">Tous les jeux</option>
+          <option value="FN">Fortnite</option>
+          <option value="RBX">Roblox</option>
+          <option value="RL">Rocket League</option>
+          <option value="YT">YouTube</option>
+        </select>
+      </div>
     </div>
+    <button id="generate" class="generate">✦ Générer mes pseudos</button>
+    <div id="names" class="names"></div>
+    <p id="msg" class="message"></p>
+    <p class="note">Les pseudos sont générés dans ton navigateur. Vérifie leur disponibilité dans ton jeu.</p>
+  </div>
+  <div class="feature-grid">
+    <div class="feature"><strong>⚡ Rapide</strong><p>Des idées en un clic.</p></div>
+    <div class="feature"><strong>🎮 Gaming</strong><p>Fortnite, Roblox et plus.</p></div>
+    <div class="feature"><strong>🎨 Création</strong><p>Miniatures personnalisées.</p></div>
+  </div>
+</section>
 
+<section id="tips" class="page">
+  <div class="hero">
+    <div class="eyebrow">Zenix Gaming Academy</div>
+    <h1>Progresse. <span>Game mieux.</span></h1>
+    <p class="sub">Des conseils simples pour t'améliorer sur Fortnite.</p>
+  </div>
+  <div class="grid">
+    <article class="tip-card"><h3>🎯 Améliore ta visée</h3><p>Échauffe-toi en créatif, travaille le suivi des cibles et garde une sensibilité stable.</p></article>
+    <article class="tip-card"><h3>🏗️ Travaille tes edits</h3><p>Répète les mouvements lentement et accélère quand tu es régulier.</p></article>
+    <article class="tip-card"><h3>🧠 Joue stratégique</h3><p>Surveille tes soins, tes matériaux et ton placement avant de prendre un combat.</p></article>
+    <article class="tip-card"><h3>📈 Apprends de tes erreurs</h3><p>Après chaque partie, choisis une chose à améliorer lors de la suivante.</p></article>
+  </div>
+</section>
+
+<section id="settings" class="page">
+  <div class="hero">
+    <div class="eyebrow">Zenix Pro Settings</div>
+    <h1>Réglages <span>Fortnite.</span></h1>
+    <p class="sub">Des exemples de réglages à tester. Les meilleurs réglages sont ceux avec lesquels tu es régulier.</p>
+  </div>
+  <div class="grid">
+    <article class="tip-card"><h3>🖱️ Clavier / souris</h3><p>Teste une sensibilité adaptée à ton tapis et à tes mouvements. Change un seul réglage à la fois.</p></article>
+    <article class="tip-card"><h3>🎮 Manette</h3><p>Teste tes touches, ta sensibilité et tes zones mortes en créatif. Ajuste-les petit à petit.</p></article>
+    <article class="tip-card"><h3>⚙️ Builds & edits</h3><p>Choisis des touches confortables et entraîne-toi à les utiliser sans regarder le clavier.</p></article>
+    <article class="tip-card"><h3>💡 Conseil</h3><p>Les réglages des pros ne garantissent pas de gagner. Prends le temps de trouver ce qui te convient.</p></article>
+  </div>
+</section>
+
+<section id="orders" class="page">
+  <div class="hero">
+    <div class="eyebrow">Zenix Creator Studio</div>
+    <h1>Ta miniature. <span>Ton style.</span></h1>
+    <p class="sub">Des miniatures et bannières gaming personnalisées pour YouTube, Fortnite, Roblox et Rocket League.</p>
+  </div>
+
+  <div class="order-grid">
+    <article class="order-option">
+      <h3>⚡ Miniature simple</h3>
+      <p>Une miniature avec texte, couleurs et ambiance gaming.</p>
+      <div class="price">5 €</div>
+      <button class="generate choose" data-offer="Miniature simple — 5 €">Choisir cette offre</button>
+    </article>
+    <article class="order-option">
+      <h3>🔥 Miniature détaillée</h3>
+      <p>Une composition plus travaillée avec plusieurs éléments et effets.</p>
+      <div class="price">8 €</div>
+      <button class="generate choose" data-offer="Miniature détaillée — 8 €">Choisir cette offre</button>
+    </article>
+    <article class="order-option">
+      <h3>👑 Pack créateur</h3>
+      <p>Une miniature et une bannière assorties pour ta chaîne.</p>
+      <div class="price">12 €</div>
+      <button class="generate choose" data-offer="Pack miniature + bannière — 12 €">Choisir cette offre</button>
+    </article>
+  </div>
+
+  <div class="card">
+    <h2>📝 Commander ta création</h2>
+    <p class="sub" style="text-align:left;margin:0">Décris ton idée pour que la création corresponde à ton univers.</p>
+    <form id="orderForm" class="order-form">
+      <label for="orderName">Ton pseudo</label>
+      <input id="orderName" class="field" maxlength="40" required placeholder="Ex. NovaYT">
+
+      <label for="orderType">Quelle offre veux-tu ?</label>
+      <select id="orderType" class="field" required>
+        <option>Miniature simple — 5 €</option>
+        <option>Miniature détaillée — 8 €</option>
+        <option>Pack miniature + bannière — 12 €</option>
+      </select>
+
+      <label for="orderGame">Jeu ou thème</label>
+      <select id="orderGame" class="field">
+        <option>Fortnite</option>
+        <option>Roblox</option>
+        <option>Rocket League</option>
+        <option>YouTube / autre</option>
+      </select>
+
+      <label for="orderText">Décris ta miniature ou bannière</label>
+      <textarea id="orderText" class="field" rows="5" maxlength="1200" required placeholder="Ex. Fortnite, couleurs violettes, mon pseudo en grand, effet lumineux..."></textarea>
+
+      <label for="orderDeadline">Délai souhaité (facultatif)</label>
+      <input id="orderDeadline" class="field" maxlength="80" placeholder="Ex. Pas urgent">
+
+      <button class="generate" type="submit">Préparer ma demande de commande ↗</button>
+      <p class="note">Le formulaire prépare un e-mail : il ne transmet pas automatiquement la commande et ne prend aucun paiement. Demande à ton parent de gérer les commandes, les échanges et les paiements.</p>
+      <p id="orderMessage" class="message"></p>
+    </form>
     <div class="preview">
-      <div class="preview-top">
-        <span>ZENIX STUDIO / 001</span>
-        <span>DESIGN GAMING</span>
-      </div>
-
-      <div class="artwork">
-        <span class="small">THE NEXT LEVEL</span>
-        <div class="big">VICTORY</div>
-        <span class="small">YOUR GAME. YOUR RULES.</span>
-      </div>
-
-      <div class="preview-bottom">
-        <strong>Concept gaming #001</strong>
-        <span class="tag">ZENIX ORIGINAL</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="services">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">NOS SERVICES</span>
-      <h2>Fais passer ta chaîne au niveau supérieur.</h2>
-      <p class="section-intro">
-        Des idées créatives pour construire une identité gaming
-        qui te ressemble.
-      </p>
-    </div>
-
-    <div class="cards">
-
-      <article class="card">
-        <div class="card-icon">🎨</div>
-        <h3>Miniatures YouTube</h3>
-        <p>
-          Des concepts accrocheurs pour tes vidéos Fortnite,
-          Roblox et autres jeux.
-        </p>
-        <a href="#commande">Choisir ce service ↗</a>
-      </article>
-
-      <article class="card">
-        <div class="card-icon">⚡</div>
-        <h3>Bannières gaming</h3>
-        <p>
-          Une identité visuelle personnalisée pour ton profil
-          et ta chaîne.
-        </p>
-        <a href="#commande">Choisir ce service ↗</a>
-      </article>
-
-      <article class="card">
-        <div class="card-icon">🤖</div>
-        <h3>Assistant créatif</h3>
-        <p>
-          Prépare des idées de designs et des descriptions
-          à utiliser avec un outil de génération d'images.
-        </p>
-        <a href="#outil">Tester l'outil ↗</a>
-      </article>
-
+      <strong>📌 Comment ça marche ?</strong>
+      <p class="note">1. Tu choisis une offre. 2. Tu décris ton idée. 3. Ton parent vérifie et envoie la demande. 4. Le prix final et le délai sont confirmés avant de commencer.</p>
     </div>
   </div>
 </section>
 
-<section id="portfolio">
-  <div class="container">
-
-    <div class="section-head">
-      <span class="eyebrow">PORTFOLIO</span>
-      <h2>Quelques concepts Zenix.</h2>
-      <p class="section-intro">
-        Des maquettes originales pour présenter le style du studio.
-      </p>
-    </div>
-
-    <div class="gallery">
-
-      <article class="gallery-item">
-        <div class="gallery-art art-fortnite">
-          <small>FORTNITE / GAMING</small>
-          CLUTCH<br>MASTER
-        </div>
-        <div class="gallery-info">
-          <h3>Fortnite — Clutch Master</h3>
-          <p>Concept de miniature gaming</p>
-        </div>
-      </article>
-
-      <article class="gallery-item">
-        <div class="gallery-art art-roblox">
-          <small>ROBLOX / ADVENTURE</small>
-          99 NUITS<br>DANS LA FORÊT
-        </div>
-        <div class="gallery-info">
-          <h3>Roblox — Aventure</h3>
-          <p>Concept de miniature aventure</p>
-        </div>
-      </article>
-
-      <article class="gallery-item">
-        <div class="gallery-art art-neon">
-          <small>ZENIX / ESPORT</small>
-          NEXT<br>LEVEL
-        </div>
-        <div class="gallery-info">
-          <h3>Next Level</h3>
-          <p>Concept de bannière néon</p>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section id="outil">
-  <div class="container tool-layout">
-
-    <div class="tool-description">
-      <span class="eyebrow">ZENIX CREATIVE AI</span>
-      <h2>Imagine ta prochaine miniature.</h2>
-      <p>
-        Choisis ton jeu, ton style et le texte à afficher.
-        L'outil prépare un prompt personnalisé que tu peux copier
-        et utiliser dans un générateur d'images compatible.
-      </p>
-      <p>
-        <strong>À savoir :</strong> cette version prépare des idées
-        de création. Elle ne génère pas directement un fichier image
-        et ne nécessite aucune clé API.
-      </p>
-    </div>
-
-    <div class="tool-box">
-      <form id="ideaForm">
-
-        <div class="field">
-          <label for="game">Ton jeu</label>
-          <select id="game">
-            <option>Fortnite</option>
-            <option>Roblox</option>
-            <option>Rocket League</option>
-            <option>Minecraft</option>
-            <option>Autre jeu vidéo</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="kind">Type de création</label>
-          <select id="kind">
-            <option>Miniature YouTube 16:9</option>
-            <option>Bannière de chaîne YouTube</option>
-            <option>Visuel vertical pour YouTube Shorts</option>
-            <option>Photo de profil gaming</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="style">Style graphique</label>
-          <select id="style">
-            <option>Néon violet et bleu</option>
-            <option>Esport compétitif</option>
-            <option>Rouge et noir intense</option>
-            <option>Coloré et dynamique</option>
-            <option>Sombre et futuriste</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="words">Texte à afficher</label>
-          <input id="words" maxlength="60"
-            placeholder="Ex. : NOUVEAU RECORD !">
-        </div>
-
-        <div class="field">
-          <label for="details">Détails supplémentaires</label>
-          <textarea id="details" maxlength="400"
-            placeholder="Ex. : personnage au centre, éclairages violets..."></textarea>
-        </div>
-
-        <button class="btn" type="submit" style="width:100%">
-          ✨ Générer mon concept
-        </button>
-      </form>
-
-      <div class="result" id="result" aria-live="polite">
-        <h3 style="margin-bottom:12px">Ton prompt personnalisé</h3>
-        <pre id="promptOutput"></pre>
-        <div class="result-actions">
-          <button type="button" class="btn" id="copyPrompt">
-            Copier le prompt
-          </button>
-          <button type="button" class="btn btn-secondary" id="resetPrompt">
-            Recommencer
-          </button>
-        </div>
-        <p class="notice" id="copyStatus"></p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="order-section" id="commande">
-  <div class="container">
-
-    <div class="section-head">
-      <span class="eyebrow">TON PROJET</span>
-      <h2>Parlons de ta prochaine création.</h2>
-      <p class="section-intro">
-        Décris ton besoin pour préparer une demande claire.
-      </p>
-    </div>
-
-    <div class="tool-box" style="max-width:700px;margin:auto">
-      <form id="orderForm">
-
-        <div class="field">
-          <label for="customerName">Ton pseudo ou prénom</label>
-          <input id="customerName" maxlength="60"
-            placeholder="Ton pseudo gaming" required>
-        </div>
-
-        <div class="field">
-          <label for="customerContact">Ton moyen de contact</label>
-          <input id="customerContact" maxlength="120"
-            placeholder="Ex. : adresse e-mail de contact" required>
-        </div>
-
-        <div class="field">
-          <label for="service">Le service souhaité</label>
-          <select id="service">
-            <option>Miniature YouTube</option>
-            <option>Bannière gaming</option>
-            <option>Miniature + bannière</option>
-            <option>Autre demande créative</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="gameOrder">Le jeu concerné</label>
-          <select id="gameOrder">
-            <option>Fortnite</option>
-            <option>Roblox</option>
-            <option>Rocket League</option>
-            <option>Minecraft</option>
-            <option>Autre</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="budget">Budget envisagé</label>
-          <select id="budget">
-            <option>À discuter</option>
-            <option>Demande gratuite / test</option>
-            <option>Moins de 5 €</option>
-            <option>5 à 10 €</option>
-            <option>Plus de 10 €</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="description">Décris ce que tu veux</label>
-          <textarea id="description" maxlength="1000"
-            placeholder="Couleurs, texte, personnage, ambiance..."
-            required></textarea>
-        </div>
-
-        <button class="btn" type="submit" style="width:100%">
-          Préparer ma demande →
-        </button>
-
-        <p class="notice">
-          Ce formulaire prépare un récapitulatif. Il n'envoie pas
-          automatiquement la commande et ne réalise aucun paiement.
-        </p>
-      </form>
-
-      <div class="result" id="orderResult" aria-live="polite">
-        <h3 style="margin-bottom:12px">Récapitulatif de ta demande</h3>
-        <pre id="orderOutput"></pre>
-        <div class="result-actions">
-          <button type="button" class="btn" id="copyOrder">
-            Copier ma demande
-          </button>
-        </div>
-        <p class="notice" id="orderStatus"></p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container footer-row">
-    <div class="logo">ZENIX<span> AI</span></div>
-    <p>© <span id="year"></span> Zenix AI — Studio créatif gaming.</p>
-    <a href="#accueil">Retour en haut ↑</a>
-  </div>
-</footer>
+<footer>ZENIX AI · Gaming · Miniatures · Bannières · Créé pour les gamers</footer>
+</div></div>
 
 <script>
-const $ = (id) => document.getElementById(id);
-
-$("year").textContent = new Date().getFullYear();
-
-function makePrompt() {
-  const game = $("game").value;
-  const kind = $("kind").value;
-  const style = $("style").value;
-  const words = $("words").value.trim();
-  const details = $("details").value.trim();
-
-  return [
-    "Créer un visuel gaming original et professionnel.",
-    "Jeu : " + game + ".",
-    "Format : " + kind + ".",
-    "Style graphique : " + style + ".",
-    words ? "Texte souhaité : " + words + "." :
-      "Proposer un titre court et accrocheur.",
-    details ? "Détails : " + details + "." : "",
-    "Composition lisible, contraste élevé, éclairage soigné,",
-    "hiérarchie visuelle claire et rendu de qualité.",
-    "Créer une composition originale sans copier une œuvre existante.",
-    "Respecter le format demandé et garder les textes lisibles."
-  ].filter(Boolean).join("\n");
+let selectedStyle='tryhard';
+const prefixes={
+ tryhard:['Vex','Clutch','Rush','Flick','Zerq','Aim','Cr4zy'],
+ pro:['Prime','Elite','Royal','Ace','Legend','Vanta','Ultra'],
+ futuriste:['Nova','Void','Nex','Quantum','Orbit','Neon','Cyber'],
+ fun:['Boubou','Waffle','Panda','Mochi','Pixel','Patate','ZigZag']
+};
+const suffixes={
+ tryhard:['X','FN','ツ','QT','GG'],
+ pro:['Pro','IV','One','VIP','GG'],
+ futuriste:['Byte','Flux','Wave','Core','404'],
+ fun:['LOL','XD','Pop','Biscuit','Mdr']
+};
+document.querySelectorAll('[data-style]').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  selectedStyle=btn.dataset.style;
+  document.querySelectorAll('[data-style]').forEach(b=>b.classList.toggle('active',b===btn));
+ });
+});
+function cleanName(s){
+ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9_]/g,'').slice(0,14);
 }
-
-$("ideaForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  $("promptOutput").textContent = makePrompt();
-  $("result").style.display = "block";
-  $("copyStatus").textContent = "";
-  $("result").scrollIntoView({ behavior: "smooth", block: "nearest" });
+document.getElementById('generate').addEventListener('click',()=>{
+ const base=cleanName(document.getElementById('keyword').value.trim());
+ const game=document.getElementById('game').value;
+ const out=new Set();
+ while(out.size<12){
+  const a=prefixes[selectedStyle][Math.floor(Math.random()*prefixes[selectedStyle].length)];
+  const b=suffixes[selectedStyle][Math.floor(Math.random()*suffixes[selectedStyle].length)];
+  const options=base?[base+a,base+b,a+base,base+'_'+b]:[a+b,a+game,a+'_'+b,a+Math.floor(Math.random()*99)];
+  out.add(options[Math.floor(Math.random()*options.length)].slice(0,20));
+ }
+ const holder=document.getElementById('names');
+ holder.innerHTML='';
+ out.forEach(name=>{
+  const row=document.createElement('div');row.className='name';
+  const strong=document.createElement('strong');strong.textContent=name;
+  const btn=document.createElement('button');btn.className='small-btn';btn.textContent='Copier';
+  btn.addEventListener('click',async()=>{
+   try{await navigator.clipboard.writeText(name);document.getElementById('msg').textContent='Pseudo copié : '+name;}
+   catch(e){document.getElementById('msg').textContent='Copie indisponible : '+name;}
+  });
+  row.append(strong,btn);holder.append(row);
+ });
+ document.getElementById('msg').textContent='12 idées générées !';
 });
-
-async function copyText(value, statusElement) {
-  try {
-    await navigator.clipboard.writeText(value);
-    statusElement.textContent = "Copié ! Tu peux maintenant le coller.";
-  } catch (error) {
-    statusElement.textContent =
-      "La copie automatique n'a pas fonctionné. Sélectionne le texte et copie-le manuellement.";
-  }
-}
-
-$("copyPrompt").addEventListener("click", function() {
-  copyText($("promptOutput").textContent, $("copyStatus"));
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b===btn));
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===btn.dataset.page));
+  window.scrollTo({top:0,behavior:'smooth'});
+ });
 });
-
-$("resetPrompt").addEventListener("click", function() {
-  $("ideaForm").reset();
-  $("result").style.display = "none";
-  $("copyStatus").textContent = "";
+document.querySelectorAll('.choose').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  document.getElementById('orderType').value=btn.dataset.offer;
+  document.getElementById('orderForm').scrollIntoView({behavior:'smooth',block:'start'});
+ });
 });
-
-$("orderForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const request = [
-    "DEMANDE DE CRÉATION — ZENIX AI",
-    "",
-    "Pseudo : " + $("customerName").value.trim(),
-    "Contact fourni : " + $("customerContact").value.trim(),
-    "Service : " + $("service").value,
-    "Jeu : " + $("gameOrder").value,
-    "Budget envisagé : " + $("budget").value,
-    "",
-    "DESCRIPTION DU PROJET :",
-    $("description").value.trim()
-  ].join("\n");
-
-  $("orderOutput").textContent = request;
-  $("orderResult").style.display = "block";
-  $("orderStatus").textContent =
-    "Ta demande est préparée, mais elle n'a pas encore été envoyée.";
-  $("orderResult").scrollIntoView({ behavior: "smooth", block: "nearest" });
-});
-
-$("copyOrder").addEventListener("click", function() {
-  copyText($("orderOutput").textContent, $("orderStatus"));
+document.getElementById('orderForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const data={
+  pseudo:document.getElementById('orderName').value.trim(),
+  offre:document.getElementById('orderType').value,
+  jeu:document.getElementById('orderGame').value,
+  description:document.getElementById('orderText').value.trim(),
+  delai:document.getElementById('orderDeadline').value.trim()||'Non précisé'
+ };
+ const subject='Demande de commande Zenix — '+data.offre;
+ const body=[
+  'Nouvelle demande Zenix',
+  'Pseudo : '+data.pseudo,
+  'Offre : '+data.offre,
+  'Jeu/thème : '+data.jeu,
+  'Description : '+data.description,
+  'Délai souhaité : '+data.delai,
+  '',
+  'Merci de confirmer le prix final et le délai.'
+ ].join('\n');
+ document.getElementById('orderMessage').textContent='Ta demande est préparée. Pour l’envoyer, une adresse e-mail doit être configurée par ton parent dans le code.';
+ const email='REMPLACER-PAR-EMAIL-DU-PARENT@example.com';
+ if(email.includes('REMPLACER-PAR-EMAIL')) return;
+ window.location.href='mailto:'+email+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
 });
 </script>
-
 </body>
 </html>
