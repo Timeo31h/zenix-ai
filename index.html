@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080811">
+<meta name="description" content="Zenix AI : pseudos gaming, miniatures, bannières et montages vidéo personnalisés.">
 <title>Zenix AI — Gaming Studio</title>
 
 <style>
@@ -44,7 +45,6 @@ header {
   background:linear-gradient(135deg,var(--purple),var(--blue));
 }
 .logo-name {
-  color:var(--blue);
   background:linear-gradient(90deg,#fff,var(--blue),var(--purple));
   -webkit-background-clip:text; background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -80,6 +80,7 @@ h1 { font-size:clamp(38px,7vw,72px); line-height:1.08; margin-bottom:20px; }
   display:inline-flex; justify-content:center; align-items:center;
   padding:12px 18px; border-radius:12px; border:1px solid var(--border);
   color:white; font-weight:bold; text-decoration:none;
+  transition:transform .2s,filter .2s;
 }
 .btn-primary {
   color:#080811; border:0;
@@ -90,7 +91,7 @@ h1 { font-size:clamp(38px,7vw,72px); line-height:1.08; margin-bottom:20px; }
 .section-heading { margin:45px 0 20px; }
 .section-heading h2 { font-size:clamp(25px,4vw,35px); margin-bottom:5px; }
 .section-heading p { color:var(--muted); }
-.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:17px; }
+.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px; }
 .card {
   padding:23px; border:1px solid var(--border); border-radius:19px;
   background:linear-gradient(145deg,#19192f,var(--panel));
@@ -166,7 +167,7 @@ footer strong { color:white; }
 
 <main class="container">
 
-  <!-- PAGE GENERATEUR -->
+  <!-- PAGE 1 : GENERATEUR -->
   <section id="home" class="page active">
     <div class="hero">
       <span class="eyebrow">TON UNIVERS GAMING</span>
@@ -192,12 +193,7 @@ footer strong { color:white; }
       <article class="card">
         <div class="card-icon">🎨</div>
         <h3>Créatif</h3>
-        <p>Des miniatures et bannières adaptées à ton style.</p>
-      </article>
-      <article class="card">
-        <div class="card-icon">💜</div>
-        <h3>Personnalisé</h3>
-        <p>Décris ton projet pour expliquer ce que tu souhaites.</p>
+        <p>Miniatures, bannières et montages vidéo adaptés à ton style.</p>
       </article>
     </div>
 
@@ -239,14 +235,14 @@ footer strong { color:white; }
     </div>
   </section>
 
-  <!-- PAGE COMMANDES -->
+  <!-- PAGE 2 : OFFRES ET COMMANDES -->
   <section id="orders" class="page">
     <div class="hero">
       <span class="eyebrow">ZENIX STUDIO</span>
       <h1>Ta création.<br><span class="gradient">Ton univers.</span></h1>
       <p>Choisis le type de création et explique ton idée dans le formulaire.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="#orderForm">📩 Commander</a>
+        <a class="btn btn-primary" href="#orderForm" onclick="setTimeout(() => document.getElementById('orderForm').scrollIntoView({behavior:'smooth'}), 50)">📩 Commander</a>
       </div>
     </div>
 
@@ -262,7 +258,7 @@ footer strong { color:white; }
         <h3>Miniature simple</h3>
         <p>Une miniature avec un style simple et les éléments que tu demandes.</p>
         <div class="price">2 €</div>
-        <button class="btn btn-secondary" onclick="chooseCreation('Miniature simple')">Choisir</button>
+        <button class="btn btn-secondary" onclick="chooseCreation('Miniature simple — 2 €')">Choisir</button>
       </article>
 
       <article class="card">
@@ -271,7 +267,7 @@ footer strong { color:white; }
         <h3>Miniature détaillée</h3>
         <p>Une création plus travaillée avec davantage d'effets et de détails.</p>
         <div class="price">5 €</div>
-        <button class="btn btn-secondary" onclick="chooseCreation('Miniature détaillée')">Choisir</button>
+        <button class="btn btn-secondary" onclick="chooseCreation('Miniature détaillée — 5 €')">Choisir</button>
       </article>
 
       <article class="card">
@@ -280,7 +276,16 @@ footer strong { color:white; }
         <h3>Bannière</h3>
         <p>Une bannière gaming personnalisée pour ta chaîne ou ton profil.</p>
         <div class="price">8 €</div>
-        <button class="btn btn-secondary" onclick="chooseCreation('Bannière')">Choisir</button>
+        <button class="btn btn-secondary" onclick="chooseCreation('Bannière — 8 €')">Choisir</button>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🎬</div>
+        <span class="tag">Montage vidéo</span>
+        <h3>Montage gaming détaillé</h3>
+        <p>Un montage gaming personnalisé selon tes indications, avec des coupes et des effets selon le projet.</p>
+        <div class="price">3 €</div>
+        <button class="btn btn-secondary" onclick="chooseCreation('Montage gaming détaillé — 3 €')">Choisir</button>
       </article>
     </div>
 
@@ -301,6 +306,7 @@ footer strong { color:white; }
         </ul>
         <div class="notice">
           Les prix sont affichés à titre indicatif. Vérifie les commandes payantes avec un parent.
+          Pour un montage vidéo, précise aussi la durée et les effets souhaités.
         </div>
       </aside>
 
@@ -321,6 +327,7 @@ footer strong { color:white; }
             <option value="Miniature simple — 2 €">Miniature simple — 2 €</option>
             <option value="Miniature détaillée — 5 €">Miniature détaillée — 5 €</option>
             <option value="Bannière — 8 €">Bannière — 8 €</option>
+            <option value="Montage gaming détaillé — 3 €">Montage gaming détaillé — 3 €</option>
           </select>
         </div>
 
@@ -348,7 +355,7 @@ footer strong { color:white; }
 
         <div class="field">
           <label for="description">Décris ton idée *</label>
-          <textarea id="description" maxlength="2000" required placeholder="Exemple : une miniature Fortnite avec mon pseudo, un fond violet et des effets lumineux..."></textarea>
+          <textarea id="description" maxlength="2000" required placeholder="Exemple : une miniature Fortnite avec mon pseudo, un fond violet et des effets lumineux. Pour une vidéo, précise la durée, les clips et les effets souhaités..."></textarea>
         </div>
 
         <button class="btn btn-primary" type="submit">✉️ Préparer l'e-mail</button>
@@ -372,9 +379,11 @@ function showPage(pageId) {
   document.querySelectorAll(".page").forEach(function(page) {
     page.classList.toggle("active", page.id === pageId);
   });
+
   document.querySelectorAll(".nav-btn").forEach(function(button) {
     button.classList.toggle("active", button.dataset.page === pageId);
   });
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -389,34 +398,40 @@ function generatePseudos() {
   const raw = document.getElementById("pseudoWord").value.trim();
   const base = raw.replace(/[^a-zA-Z0-9]/g, "").slice(0, 16) || "Player";
   const style = document.getElementById("pseudoStyle").value;
-  const game = document.getElementById("pseudoGame").value;
+  const game = document.getElementById("pseudoGame").value.replace(/\s/g, "");
+
   const prefixes = {
-    pro:["Vx","Clx","Zy","HvK","Nx"],
-    dark:["Void","Ghost","Dark","Shadow","Night"],
-    clean:["Zen","Nova","Aero","Echo","Lynx"],
-    fun:["Pixel","Crazy","Turbo","Mini","Wiz"]
+    pro: ["Vx", "Clx", "Zy", "HvK", "Nx"],
+    dark: ["Void", "Ghost", "Dark", "Shadow", "Night"],
+    clean: ["Zen", "Nova", "Aero", "Echo", "Lynx"],
+    fun: ["Pixel", "Crazy", "Turbo", "Mini", "Wiz"]
   };
+
   const suffixes = {
-    pro:["FN","X","7","FPS","ツ"],
-    dark:["Void","404","X","Night","Shadow"],
-    clean:["ix","io","X","zy","One"],
-    fun:["GG","LOL","Pop","XD","Boom"]
+    pro: ["FN", "X", "7", "FPS", "ツ"],
+    dark: ["Void", "404", "X", "Night", "Shadow"],
+    clean: ["ix", "io", "X", "zy", "One"],
+    fun: ["GG", "LOL", "Pop", "XD", "Boom"]
   };
+
   const names = [
     base + suffixes[style][0],
     prefixes[style][0] + base,
     base + "_" + suffixes[style][1],
-    prefixes[style][1] + game.replace(/\s/g,"") + base,
+    prefixes[style][1] + game + base,
     base + suffixes[style][2],
     prefixes[style][2] + base + suffixes[style][3]
   ];
+
   const list = document.getElementById("pseudoList");
   list.innerHTML = "";
+
   names.forEach(function(name) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "pseudo";
     button.textContent = name;
+
     button.onclick = async function() {
       try {
         await navigator.clipboard.writeText(name);
@@ -426,18 +441,17 @@ function generatePseudos() {
         window.prompt("Copie ton pseudo :", name);
       }
     };
+
     list.appendChild(button);
   });
+
   document.getElementById("pseudoResults").classList.add("visible");
 }
 
 function chooseCreation(value) {
   const select = document.getElementById("creation");
-  const option = Array.from(select.options).find(function(item) {
-    return item.text.startsWith(value);
-  });
-  if (option) select.value = option.value;
-  document.getElementById("orderForm").scrollIntoView({ behavior:"smooth" });
+  select.value = value;
+  document.getElementById("orderForm").scrollIntoView({ behavior: "smooth" });
 }
 
 document.getElementById("orderForm").addEventListener("submit", function(event) {
@@ -451,11 +465,12 @@ document.getElementById("orderForm").addEventListener("submit", function(event) 
   const description = document.getElementById("description").value.trim();
 
   const subject = encodeURIComponent("Commande Zenix AI - " + creation);
+
   const body = encodeURIComponent(
     "Bonjour, voici une demande de commande Zenix AI.\n\n" +
     "Pseudo / prénom : " + name + "\n" +
     "E-mail du client : " + (email || "Non renseigné") + "\n" +
-    "Création : " + creation + "\n" +
+    "Création et tarif : " + creation + "\n" +
     "Jeu : " + game + "\n" +
     "Style : " + style + "\n\n" +
     "Description du projet :\n" + description + "\n\n" +
